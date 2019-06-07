@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uni.userBaseInfo2.mapper.ApprovalMainMapper" >
+  <resultMap id="BaseResultMap" type="edu.uni.userBaseInfo2.bean.ApprovalMain" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="university_id" property="universityId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="step_cnt" property="stepCnt" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="by_who" property="byWho" jdbcType="BIGINT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, university_id, name, step_cnt, type, datetime, by_who, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_main
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllByDelete" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from approval_main where deleted = 0;
+  </select>
+  <select id="selectByUniIdAndName" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from approval_main where university_id = #{universityId,jdbcType=BIGINT} and name = #{name,jdbcType=VARCHAR} and deleted = 0;
+  </select>
+  <select id="selectByUniId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from approval_main where university_id = #{universityId,jdbcType=BIGINT} and deleted = 0;
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from approval_main
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.uni.userBaseInfo2.bean.ApprovalMain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into approval_main (university_id, name, step_cnt, 
+      type, datetime, by_who, 
+      deleted)
+    values (#{universityId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{stepCnt,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{datetime,jdbcType=TIMESTAMP}, #{byWho,jdbcType=BIGINT}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.uni.userBaseInfo2.bean.ApprovalMain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into approval_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="universityId != null" >
+        university_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="stepCnt != null" >
+        step_cnt,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="datetime != null" >
+        datetime,
+      </if>
+      <if test="byWho != null" >
+        by_who,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="universityId != null" >
+        #{universityId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="stepCnt != null" >
+        #{stepCnt,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetime != null" >
+        #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="byWho != null" >
+        #{byWho,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.uni.userBaseInfo2.bean.ApprovalMain" >
+    update approval_main
+    <set >
+      <if test="universityId != null" >
+        university_id = #{universityId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="stepCnt != null" >
+        step_cnt = #{stepCnt,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetime != null" >
+        datetime = #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="byWho != null" >
+        by_who = #{byWho,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.uni.userBaseInfo2.bean.ApprovalMain" >
+    update approval_main
+    set university_id = #{universityId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      step_cnt = #{stepCnt,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      datetime = #{datetime,jdbcType=TIMESTAMP},
+      by_who = #{byWho,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,186 @@
+2019-05-10 11:12:57.622 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class java.lang.Long'
+2019-05-10 11:15:55.730 ERROR[http-nio-8080-exec-3]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class java.lang.Long'
+2019-05-10 11:16:02.402 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class java.lang.Long'
+2019-05-10 18:02:20.038 ERROR[http-nio-8080-exec-8]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (BIGINT) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (BIGINT) combination.
+2019-05-10 18:08:08.192 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 19:57:18.716 ERROR[http-nio-8080-exec-9]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 20:09:29.006 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 20:13:25.724 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 20:14:48.876 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class edu.uni.userBaseInfo2.bean.Student'
+2019-05-10 20:17:37.675 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class edu.uni.userBaseInfo2.bean.Student'
+2019-05-10 20:21:43.324 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class edu.uni.userBaseInfo2.bean.Student'
+2019-05-10 20:24:54.032 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class edu.uni.userBaseInfo2.bean.Student'
+2019-05-10 20:25:32.836 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 20:27:44.847 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class edu.uni.userBaseInfo2.bean.Student'
+2019-05-10 20:31:22.193 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 20:31:52.960 ERROR[http-nio-8080-exec-3]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+### Cause: java.lang.IllegalStateException: Type handler was null on parameter mapping for property '__frch_id_0'. It was either not specified and/or could not be found for the javaType (edu.uni.userBaseInfo2.bean.Student) : jdbcType (null) combination.
+2019-05-10 20:32:34.053 ERROR[http-nio-8080-exec-2]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	MyBatisExceptionTranslator.java
+报错方法是：
+	translateExceptionIfPossible
+报错的行是：
+	77
+报错信息是：
+	nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_id' in 'class edu.uni.userBaseInfo2.bean.Student'

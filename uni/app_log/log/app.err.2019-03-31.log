@@ -1,0 +1,17 @@
+2019-03-31 19:51:13.934 ERROR[http-nio-8080-exec-3]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	246
+报错信息是：
+	
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`uni`.`product`, CONSTRAINT `product_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `category` (`id`))
+### The error may exist in file [F:\ideaWorkSpace\uni\target\classes\mybatis\mapper\example\CategoryMapper.xml]
+### The error may involve edu.uni.example.mapper.CategoryMapper.deleteByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: delete from category     where id = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`uni`.`product`, CONSTRAINT `product_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `category` (`id`))
+; Cannot delete or update a parent row: a foreign key constraint fails (`uni`.`product`, CONSTRAINT `product_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `category` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`uni`.`product`, CONSTRAINT `product_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `category` (`id`))

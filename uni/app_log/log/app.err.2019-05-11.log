@@ -1,0 +1,28 @@
+2019-05-11 19:25:10.261 ERROR[http-nio-8080-exec-2]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 19:25:15.949 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	ApprovalMainController.java
+报错方法是：
+	destroy
+报错的行是：
+	54
+报错信息是：
+	null
+2019-05-11 19:25:23.512 ERROR[http-nio-8080-exec-5]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 19:25:26.507 ERROR[http-nio-8080-exec-4]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 19:25:31.435 ERROR[http-nio-8080-exec-6]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	ApprovalMainController.java
+报错方法是：
+	destroy
+报错的行是：
+	54
+报错信息是：
+	null
+2019-05-11 19:25:39.527 ERROR[http-nio-8080-exec-9]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 19:41:33.597 ERROR[http-nio-8080-exec-9]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 20:20:42.410 ERROR[http-nio-8080-exec-1]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 21:06:18.444 ERROR[http-nio-8080-exec-7]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll
+2019-05-11 21:06:35.394 ERROR[http-nio-8080-exec-8]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_s_address_listAll

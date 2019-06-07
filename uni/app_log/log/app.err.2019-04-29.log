@@ -1,0 +1,40 @@
+2019-04-29 00:11:12.990 ERROR[http-nio-8080-exec-6]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	LettuceConnectionFactory.java
+报错方法是：
+	getNativeConnection
+报错的行是：
+	1092
+报错信息是：
+	Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 112.74.39.181:6379
+2019-04-29 00:14:18.672 ERROR[http-nio-8080-exec-3]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	LettuceConnectionFactory.java
+报错方法是：
+	getNativeConnection
+报错的行是：
+	1092
+报错信息是：
+	Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 112.74.39.181:6379
+2019-04-29 01:35:23.178 ERROR[http-nio-8080-exec-4]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractNamedValueMethodArgumentResolver.java
+报错方法是：
+	resolveArgument
+报错的行是：
+	132
+报错信息是：
+	Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "listAll"
+2019-04-29 01:35:47.171 ERROR[http-nio-8080-exec-7]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	LettuceConnectionFactory.java
+报错方法是：
+	getNativeConnection
+报错的行是：
+	1092
+报错信息是：
+	Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 112.74.39.181:6379

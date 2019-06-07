@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uni.userBaseInfo2.mapper.StudentRelationMapper" >
+  <resultMap id="BaseResultMap" type="edu.uni.userBaseInfo2.bean.StudentRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="rela_name" property="relaName" jdbcType="CHAR" />
+    <result column="rela_id" property="relaId" jdbcType="BIGINT" />
+    <result column="relationship" property="relationship" jdbcType="INTEGER" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="by_who" property="byWho" jdbcType="BIGINT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, rela_name, rela_id, relationship, datetime, by_who, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from student_relation
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from student_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.uni.userBaseInfo2.bean.StudentRelation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into student_relation (user_id, rela_name, rela_id, 
+      relationship, datetime, by_who, 
+      deleted)
+    values (#{userId,jdbcType=BIGINT}, #{relaName,jdbcType=CHAR}, #{relaId,jdbcType=BIGINT}, 
+      #{relationship,jdbcType=INTEGER}, #{datetime,jdbcType=TIMESTAMP}, #{byWho,jdbcType=BIGINT}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.uni.userBaseInfo2.bean.StudentRelation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into student_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="relaName != null" >
+        rela_name,
+      </if>
+      <if test="relaId != null" >
+        rela_id,
+      </if>
+      <if test="relationship != null" >
+        relationship,
+      </if>
+      <if test="datetime != null" >
+        datetime,
+      </if>
+      <if test="byWho != null" >
+        by_who,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="relaName != null" >
+        #{relaName,jdbcType=CHAR},
+      </if>
+      <if test="relaId != null" >
+        #{relaId,jdbcType=BIGINT},
+      </if>
+      <if test="relationship != null" >
+        #{relationship,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null" >
+        #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="byWho != null" >
+        #{byWho,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.uni.userBaseInfo2.bean.StudentRelation" >
+    update student_relation
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="relaName != null" >
+        rela_name = #{relaName,jdbcType=CHAR},
+      </if>
+      <if test="relaId != null" >
+        rela_id = #{relaId,jdbcType=BIGINT},
+      </if>
+      <if test="relationship != null" >
+        relationship = #{relationship,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null" >
+        datetime = #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="byWho != null" >
+        by_who = #{byWho,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.uni.userBaseInfo2.bean.StudentRelation" >
+    update student_relation
+    set user_id = #{userId,jdbcType=BIGINT},
+      rela_name = #{relaName,jdbcType=CHAR},
+      rela_id = #{relaId,jdbcType=BIGINT},
+      relationship = #{relationship,jdbcType=INTEGER},
+      datetime = #{datetime,jdbcType=TIMESTAMP},
+      by_who = #{byWho,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

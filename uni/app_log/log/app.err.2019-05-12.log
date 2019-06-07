@@ -1,0 +1,95 @@
+2019-05-12 09:36:16.451 ERROR[http-nio-8080-exec-5]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	246
+报错信息是：
+	
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_2` FOREIGN KEY (`state`) REFERENCES `addr_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\AddressMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.AddressMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into address (user_id, country, state,        city, area, street, detail,        zip_code, telephone, flag,        datetime, by_who, deleted       )     values (?, ?, ?,        ?, ?, ?, ?,        ?, ?, ?,        ?, ?, ?       )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_2` FOREIGN KEY (`state`) REFERENCES `addr_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+; Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_2` FOREIGN KEY (`state`) REFERENCES `addr_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_2` FOREIGN KEY (`state`) REFERENCES `addr_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2019-05-12 09:50:33.542 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	246
+报错信息是：
+	
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\AddressMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.AddressMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into address (user_id, country, state,        city, area, street, detail,        zip_code, telephone, flag,        datetime, by_who, deleted       )     values (?, ?, ?,        ?, ?, ?, ?,        ?, ?, ?,        ?, ?, ?       )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+; Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2019-05-12 09:53:05.315 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	246
+报错信息是：
+	
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\AddressMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.AddressMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into address (user_id, country, state,        city, area, street, detail,        zip_code, telephone, flag,        datetime, by_who, deleted       )     values (?, ?, ?,        ?, ?, ?, ?,        ?, ?, ?,        ?, ?, ?       )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+; Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`uni`.`address`, CONSTRAINT `address_ibfk_3` FOREIGN KEY (`city`) REFERENCES `addr_city` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2019-05-12 10:23:22.723 ERROR[http-nio-8080-exec-9]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractJackson2HttpMessageConverter.java
+报错方法是：
+	readJavaType
+报错的行是：
+	245
+报错信息是：
+	JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 20, column: 18] (through reference chain: edu.uni.userBaseInfo2.controller.approvalUtil.AddressAU["userinfoApply"])
+2019-05-12 10:29:07.093 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractJackson2HttpMessageConverter.java
+报错方法是：
+	readJavaType
+报错的行是：
+	245
+报错信息是：
+	JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 14, column: 14] (through reference chain: edu.uni.userBaseInfo2.controller.approvalUtil.AddressAU["address"])
+2019-05-12 10:32:07.663 ERROR[http-nio-8080-exec-2]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractJackson2HttpMessageConverter.java
+报错方法是：
+	readJavaType
+报错的行是：
+	245
+报错信息是：
+	JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 14, column: 14] (through reference chain: edu.uni.userBaseInfo2.controller.approvalUtil.AddressAU["address"])
+2019-05-12 10:37:30.596 ERROR[http-nio-8080-exec-6]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractJackson2HttpMessageConverter.java
+报错方法是：
+	readJavaType
+报错的行是：
+	245
+报错信息是：
+	JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 14, column: 16] (through reference chain: edu.uni.userBaseInfo2.controller.approvalUtil.AddressAU["address"])

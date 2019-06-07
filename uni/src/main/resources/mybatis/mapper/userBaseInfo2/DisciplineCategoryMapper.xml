@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uni.userBaseInfo2.mapper.DisciplineCategoryMapper" >
+  <resultMap id="BaseResultMap" type="edu.uni.userBaseInfo2.bean.DisciplineCategory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="discipline" property="discipline" jdbcType="CHAR" />
+    <result column="by_who" property="byWho" jdbcType="BIGINT" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, discipline, by_who, datetime, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from discipline_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from discipline_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.uni.userBaseInfo2.bean.DisciplineCategory" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into discipline_category (discipline, by_who, datetime, 
+      deleted)
+    values (#{discipline,jdbcType=CHAR}, #{byWho,jdbcType=BIGINT}, #{datetime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.uni.userBaseInfo2.bean.DisciplineCategory" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into discipline_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="discipline != null" >
+        discipline,
+      </if>
+      <if test="byWho != null" >
+        by_who,
+      </if>
+      <if test="datetime != null" >
+        datetime,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="discipline != null" >
+        #{discipline,jdbcType=CHAR},
+      </if>
+      <if test="byWho != null" >
+        #{byWho,jdbcType=BIGINT},
+      </if>
+      <if test="datetime != null" >
+        #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.uni.userBaseInfo2.bean.DisciplineCategory" >
+    update discipline_category
+    <set >
+      <if test="discipline != null" >
+        discipline = #{discipline,jdbcType=CHAR},
+      </if>
+      <if test="byWho != null" >
+        by_who = #{byWho,jdbcType=BIGINT},
+      </if>
+      <if test="datetime != null" >
+        datetime = #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.uni.userBaseInfo2.bean.DisciplineCategory" >
+    update discipline_category
+    set discipline = #{discipline,jdbcType=CHAR},
+      by_who = #{byWho,jdbcType=BIGINT},
+      datetime = #{datetime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

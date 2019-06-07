@@ -1,0 +1,60 @@
+2019-05-06 00:46:20.053 ERROR[http-nio-8080-exec-7]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null
+2019-05-06 20:58:34.554 ERROR[http-nio-8080-exec-7]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Preconditions.java
+报错方法是：
+	outOfBounds
+报错的行是：
+	64
+报错信息是：
+	Index 0 out-of-bounds for length 0
+2019-05-06 21:04:13.178 ERROR[http-nio-8080-exec-3]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Preconditions.java
+报错方法是：
+	outOfBounds
+报错的行是：
+	64
+报错信息是：
+	Index 0 out-of-bounds for length 0
+2019-05-06 21:08:11.933 ERROR[http-nio-8080-exec-7]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Preconditions.java
+报错方法是：
+	outOfBounds
+报错的行是：
+	64
+报错信息是：
+	Index 0 out-of-bounds for length 0
+2019-05-06 21:26:17.106 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	StudentServiceImpl.java
+报错方法是：
+	convertFromBean
+报错的行是：
+	96
+报错信息是：
+	null
+2019-05-06 21:31:31.093 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	StudentServiceImpl.java
+报错方法是：
+	convertFromBean
+报错的行是：
+	96
+报错信息是：
+	null

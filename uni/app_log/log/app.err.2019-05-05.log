@@ -1,0 +1,112 @@
+2019-05-05 20:31:33.616 ERROR[http-nio-8080-exec-10]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\StudentMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.StudentMapper.selectByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: select            id, user_id, stu_no, begin_learn_date, grade, major_id, class_id, political_id, live_room,      home_address, mail_address, datetime, by_who, deleted         from student     where id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+2019-05-05 20:33:59.757 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\StudentMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.StudentMapper.selectByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: select            id, user_id, stu_no, begin_learn_date, grade, major_id, class_id, political_id, live_room,      home_address, mail_address, datetime, by_who, deleted         from student     where id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+2019-05-05 20:35:00.482 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\StudentMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.StudentMapper.selectByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: select            id, user_id, stu_no, begin_learn_date, grade, major_id, class_id, political_id, live_room,      home_address, mail_address, datetime, by_who, deleted         from student     where id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+2019-05-05 20:36:09.187 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\StudentMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.StudentMapper.selectByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: select            id, user_id, stu_no, begin_learn_date, grade, major_id, class_id, political_id, live_room,      home_address, mail_address, datetime, by_who, deleted         from student     where id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+2019-05-05 20:41:09.927 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\StudentMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.StudentMapper.selectByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: select            id, user_id, stu_no, begin_learn_date, grade, major_id, class_id, political_id, live_room,      home_address, mail_address, datetime, by_who, deleted         from student     where id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+2019-05-05 21:23:49.819 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\StudentMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.StudentMapper.selectByPrimaryKey-Inline
+### The error occurred while setting parameters
+### SQL: select            id, user_id, stu_no, begin_learn_date, grade, major_id, class_id, political_id, live_room,      home_address, mail_address, datetime, by_who, deleted         from student     where id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'
+2019-05-05 21:41:02.614 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null

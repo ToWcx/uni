@@ -1,0 +1,40 @@
+2019-05-01 16:37:45.998 ERROR[http-nio-8080-exec-4]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractNamedValueMethodArgumentResolver.java
+报错方法是：
+	resolveArgument
+报错的行是：
+	132
+报错信息是：
+	Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "{1}"
+2019-05-01 16:40:11.324 ERROR[http-nio-8080-exec-7]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractNamedValueMethodArgumentResolver.java
+报错方法是：
+	resolveArgument
+报错的行是：
+	132
+报错信息是：
+	Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "{1}"
+2019-05-01 16:40:22.204 ERROR[http-nio-8080-exec-10]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	AbstractNamedValueMethodArgumentResolver.java
+报错方法是：
+	resolveArgument
+报错的行是：
+	132
+报错信息是：
+	Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "{id=11}"
+2019-05-01 16:40:34.581 ERROR[http-nio-8080-exec-8]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null

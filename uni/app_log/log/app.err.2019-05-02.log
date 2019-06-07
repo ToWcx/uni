@@ -1,0 +1,70 @@
+2019-05-02 17:29:43.164 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null
+2019-05-02 17:30:11.992 ERROR[http-nio-8080-exec-5]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null
+2019-05-02 17:32:24.708 ERROR[http-nio-8080-exec-7]edu.uni.utils.RedisCache.error:26 -删除缓存失败：ub2_students_listAll
+2019-05-02 17:50:29.050 ERROR[http-nio-8080-exec-8]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null
+2019-05-02 17:54:49.290 ERROR[http-nio-8080-exec-4]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	RequestMappingInfoHandlerMapping.java
+报错方法是：
+	handleNoMatch
+报错的行是：
+	200
+报错信息是：
+	Request method 'GET' not supported
+2019-05-02 18:11:03.930 ERROR[http-nio-8080-exec-10]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	SQLErrorCodeSQLExceptionTranslator.java
+报错方法是：
+	doTranslate
+报错的行是：
+	234
+报错信息是：
+	
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'userId' in 'where clause'
+### The error may exist in file [C:\Users\MacBook\Desktop\软件项目管理作业\uniProject\uni\target\classes\mybatis\mapper\userBaseInfo2\AddressMapper.xml]
+### The error may involve edu.uni.userBaseInfo2.mapper.AddressMapper.selectByUserId-Inline
+### The error occurred while setting parameters
+### SQL: select           id, user_id, country, state, city, area, street, detail, zip_code, telephone, flag,      datetime, by_who, deleted         from address     where userId = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'userId' in 'where clause'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'userId' in 'where clause'
+2019-05-02 19:19:41.225 ERROR[http-nio-8080-exec-5]edu.uni.utils.RedisCache.error:26 -设置缓存失败：ub2_studentEcomm_9
+2019-05-02 19:23:54.630 ERROR[http-nio-8080-exec-7]edu.uni.utils.RedisCache.error:26 -设置缓存失败：ub2_studentEcomm_9
+2019-05-02 19:30:37.588 ERROR[http-nio-8080-exec-5]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Assert.java
+报错方法是：
+	notNull
+报错的行是：
+	198
+报错信息是：
+	Source must not be null

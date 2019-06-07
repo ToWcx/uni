@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uni.userBaseInfo2.mapper.AddrStateMapper" >
+  <resultMap id="BaseResultMap" type="edu.uni.userBaseInfo2.bean.AddrState" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="country_code" property="countryCode" jdbcType="BIGINT" />
+    <result column="state_zh" property="stateZh" jdbcType="CHAR" />
+    <result column="state_en" property="stateEn" jdbcType="CHAR" />
+    <result column="code" property="code" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, country_code, state_zh, state_en, code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from addr_state
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByZh" resultMap="BaseResultMap" >
+    select
+    id
+    from addr_state
+    where state_zh = #{addrZh,jdbcType=CHAR}
+  </select>
+  <select id="selectByCountryCode" resultMap="BaseResultMap" >
+    select
+    state_zh, code, id
+    from addr_state
+    where country_code = #{countryCode,jdbcType=BIGINT}
+  </select>
+  <select id="selectIdByCode" resultMap="BaseResultMap" >
+    select
+    id
+    from addr_state
+    where code = #{code,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from addr_state
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.uni.userBaseInfo2.bean.AddrState" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into addr_state (country_code, state_zh, state_en, 
+      code)
+    values (#{countryCode,jdbcType=BIGINT}, #{stateZh,jdbcType=CHAR}, #{stateEn,jdbcType=CHAR}, 
+      #{code,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.uni.userBaseInfo2.bean.AddrState" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into addr_state
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="countryCode != null" >
+        country_code,
+      </if>
+      <if test="stateZh != null" >
+        state_zh,
+      </if>
+      <if test="stateEn != null" >
+        state_en,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=BIGINT},
+      </if>
+      <if test="stateZh != null" >
+        #{stateZh,jdbcType=CHAR},
+      </if>
+      <if test="stateEn != null" >
+        #{stateEn,jdbcType=CHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.uni.userBaseInfo2.bean.AddrState" >
+    update addr_state
+    <set >
+      <if test="countryCode != null" >
+        country_code = #{countryCode,jdbcType=BIGINT},
+      </if>
+      <if test="stateZh != null" >
+        state_zh = #{stateZh,jdbcType=CHAR},
+      </if>
+      <if test="stateEn != null" >
+        state_en = #{stateEn,jdbcType=CHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.uni.userBaseInfo2.bean.AddrState" >
+    update addr_state
+    set country_code = #{countryCode,jdbcType=BIGINT},
+      state_zh = #{stateZh,jdbcType=CHAR},
+      state_en = #{stateEn,jdbcType=CHAR},
+      code = #{code,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

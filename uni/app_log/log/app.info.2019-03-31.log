@@ -1,0 +1,329 @@
+2019-03-31 12:23:02.384 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 8144 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 12:23:02.386 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 12:23:03.779 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 12:23:03.784 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 12:23:03.822 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 18ms. Found 0 repository interfaces.
+2019-03-31 12:23:04.172 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$fb8d8e6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:23:04.249 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$34bf3097] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:23:06.556 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 12:23:07.227 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 12:23:07.257 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 12:23:07.273 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 12:23:07.488 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 12:23:07.495 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 12:23:07.502 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 12:23:07.514 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 12:23:07.521 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 12:23:07.547 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 5.707 seconds (JVM running for 6.868)
+2019-03-31 12:23:10.160 INFO [main]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 12:23:10.972 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 12:23:11.002 INFO [Thread-2]com.alibaba.druid.pool.DruidDataSource.close:1817 -{dataSource-1} closed
+2019-03-31 12:28:16.148 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 8004 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 12:28:16.154 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 12:28:25.742 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 8452 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 12:28:25.745 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 12:28:26.584 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 12:28:26.586 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 12:28:26.612 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 14ms. Found 0 repository interfaces.
+2019-03-31 12:28:26.803 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$51579af8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:28:26.851 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$765df2a9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:28:27.146 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-03-31 12:28:27.162 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-31 12:28:27.172 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-03-31 12:28:27.172 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-31 12:28:27.179 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-03-31 12:28:27.273 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-03-31 12:28:27.274 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1490 ms
+2019-03-31 12:28:28.200 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 12:28:28.456 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 12:28:28.469 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 12:28:28.481 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 12:28:28.633 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 12:28:28.637 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 12:28:28.641 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 12:28:28.649 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 12:28:28.653 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 12:28:28.671 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-03-31 12:28:28.694 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-31 12:28:28.697 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 3.367 seconds (JVM running for 4.292)
+2019-03-31 12:28:57.684 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-31 12:28:57.685 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-03-31 12:28:57.693 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 8 ms
+2019-03-31 12:28:59.633 INFO [http-nio-8080-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 12:45:39.799 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 10028 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 12:45:39.802 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 12:45:41.402 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 12:45:41.408 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 12:45:41.452 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 22ms. Found 0 repository interfaces.
+2019-03-31 12:45:41.821 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$8c5a8f5c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:45:41.900 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b160e70d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:45:44.295 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 12:45:44.959 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 12:45:44.981 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 12:45:44.995 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 12:45:45.088 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 12:45:45.227 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 12:45:45.234 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 12:45:45.241 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 12:45:45.250 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 12:45:45.257 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 12:45:45.289 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 5.929 seconds (JVM running for 6.856)
+2019-03-31 12:45:45.984 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 12:46:07.491 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 10068 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 12:46:07.493 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 12:46:08.835 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 12:46:08.841 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 12:46:08.892 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 28ms. Found 0 repository interfaces.
+2019-03-31 12:46:09.418 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$b21938c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:46:09.518 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3027eb3d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 12:46:11.823 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 12:46:12.508 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 12:46:12.531 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 12:46:12.549 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 12:46:12.652 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 12:46:12.790 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 12:46:12.795 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 12:46:12.803 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 12:46:12.814 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 12:46:12.823 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 12:46:12.857 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 5.826 seconds (JVM running for 6.745)
+2019-03-31 12:46:13.507 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 17:12:35.239 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 12932 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 17:12:35.242 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 17:12:36.911 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 17:12:36.915 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 17:12:36.959 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 25ms. Found 0 repository interfaces.
+2019-03-31 17:12:37.340 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$e1277932] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 17:12:37.436 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$62dd0e3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 17:12:39.802 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 17:12:40.435 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 17:12:40.465 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 17:12:40.482 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 17:12:40.588 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 17:12:40.759 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 17:12:40.768 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 17:12:40.777 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 17:12:40.795 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 17:12:40.804 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 17:12:40.838 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 6.109 seconds (JVM running for 7.239)
+2019-03-31 17:12:41.570 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 17:12:48.774 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 12884 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 17:12:48.779 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 17:12:49.762 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 17:12:49.764 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 17:12:49.794 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2019-03-31 17:12:50.008 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$5db14c9a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 17:12:50.056 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$82b7a44b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 17:12:50.310 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-03-31 17:12:50.321 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-31 17:12:50.330 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-03-31 17:12:50.331 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-31 17:12:50.337 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-03-31 17:12:50.425 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-03-31 17:12:50.425 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1598 ms
+2019-03-31 17:12:51.391 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 17:12:51.633 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 17:12:51.646 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 17:12:51.656 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 17:12:51.728 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 17:12:51.814 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 17:12:51.818 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 17:12:51.822 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 17:12:51.830 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 17:12:51.834 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 17:12:51.856 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-03-31 17:12:51.909 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-31 17:12:51.913 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 3.583 seconds (JVM running for 4.586)
+2019-03-31 17:13:02.421 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-31 17:13:02.422 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-03-31 17:13:02.427 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 5 ms
+2019-03-31 17:13:49.446 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 8520 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 17:13:49.449 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 17:13:50.466 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 17:13:50.469 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 17:13:50.500 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2019-03-31 17:13:50.704 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$d6668073] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 17:13:50.750 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fb6cd824] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 17:13:50.993 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-03-31 17:13:51.005 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-31 17:13:51.013 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-03-31 17:13:51.013 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-31 17:13:51.018 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-03-31 17:13:51.109 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-03-31 17:13:51.109 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1571 ms
+2019-03-31 17:13:52.072 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 17:13:52.321 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 17:13:52.334 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 17:13:52.345 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 17:13:52.419 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 17:13:52.489 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 17:13:52.493 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 17:13:52.498 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 17:13:52.506 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 17:13:52.510 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 17:13:52.531 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-03-31 17:13:52.558 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-31 17:13:52.561 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 3.529 seconds (JVM running for 4.456)
+2019-03-31 17:13:54.897 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-31 17:13:54.897 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-03-31 17:13:54.903 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 5 ms
+2019-03-31 19:28:00.380 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 14152 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 19:28:00.383 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 19:28:02.495 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 19:28:02.502 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 19:28:02.569 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 40ms. Found 0 repository interfaces.
+2019-03-31 19:28:03.056 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$9f52fb2d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:28:03.175 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c45952de] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:28:06.018 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:28:06.784 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 19:28:06.806 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 19:28:06.826 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 19:28:06.942 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 19:28:07.070 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 19:28:07.077 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 19:28:07.083 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 19:28:07.098 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 19:28:07.106 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 19:28:07.147 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 7.382 seconds (JVM running for 8.452)
+2019-03-31 19:28:09.942 INFO [main]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 19:28:11.438 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:28:11.471 INFO [Thread-2]com.alibaba.druid.pool.DruidDataSource.close:1817 -{dataSource-1} closed
+2019-03-31 19:28:54.878 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 12976 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 19:28:54.881 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 19:28:56.970 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 19:28:56.975 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 19:28:57.038 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 37ms. Found 0 repository interfaces.
+2019-03-31 19:28:57.453 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$7f4e3974] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:28:57.548 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a4549125] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:29:00.346 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:29:01.006 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 19:29:01.035 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 19:29:01.055 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 19:29:01.166 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 19:29:01.297 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 19:29:01.306 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 19:29:01.314 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 19:29:01.329 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 19:29:01.336 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 19:29:01.369 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 7.121 seconds (JVM running for 8.131)
+2019-03-31 19:29:03.839 INFO [main]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 19:29:05.341 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:29:05.368 INFO [Thread-2]com.alibaba.druid.pool.DruidDataSource.close:1817 -{dataSource-1} closed
+2019-03-31 19:31:06.974 INFO [main]edu.uni.UniApplicationTests.logStarting:50 -Starting UniApplicationTests on PC-20181113EZMN with PID 12572 (started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 19:31:06.976 INFO [main]edu.uni.UniApplicationTests.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 19:31:08.587 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 19:31:08.592 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 19:31:08.657 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 42ms. Found 0 repository interfaces.
+2019-03-31 19:31:09.161 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$f3a1261a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:31:09.247 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$18a77dcb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:31:11.996 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:31:12.669 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 19:31:12.693 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 19:31:12.707 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 19:31:12.825 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 19:31:12.958 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 19:31:12.966 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 19:31:12.973 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 19:31:12.990 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 19:31:12.996 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 19:31:13.026 INFO [main]edu.uni.UniApplicationTests.logStarted:59 -Started UniApplicationTests in 6.609 seconds (JVM running for 7.638)
+2019-03-31 19:31:15.721 INFO [main]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 19:31:16.840 INFO [Thread-2]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:31:16.874 INFO [Thread-2]com.alibaba.druid.pool.DruidDataSource.close:1817 -{dataSource-1} closed
+2019-03-31 19:39:50.208 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 14220 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 19:39:50.212 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 19:39:51.480 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 19:39:51.482 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 19:39:51.514 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 17ms. Found 0 repository interfaces.
+2019-03-31 19:39:51.766 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$503d1f69] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:39:51.819 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7543771a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:39:52.102 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-03-31 19:39:52.114 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-31 19:39:52.123 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-03-31 19:39:52.124 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-31 19:39:52.131 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-03-31 19:39:52.230 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-03-31 19:39:52.231 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1832 ms
+2019-03-31 19:39:53.270 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:39:53.565 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 19:39:53.578 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 19:39:53.588 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 19:39:53.668 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 19:39:53.740 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 19:39:53.746 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 19:39:53.753 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 19:39:53.765 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 19:39:53.769 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 19:39:53.787 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-03-31 19:39:53.813 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-31 19:39:53.816 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 4.04 seconds (JVM running for 5.018)
+2019-03-31 19:40:09.168 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-31 19:40:09.168 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-03-31 19:40:09.182 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 14 ms
+2019-03-31 19:40:17.653 INFO [http-nio-8080-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 19:44:46.126 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 14668 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 19:44:46.130 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 19:44:47.321 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 19:44:47.323 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 19:44:47.367 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 26ms. Found 0 repository interfaces.
+2019-03-31 19:44:47.641 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$c678e14e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:44:47.697 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$eb7f38ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:44:47.969 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-03-31 19:44:47.980 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-31 19:44:47.988 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-03-31 19:44:47.988 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-31 19:44:47.993 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-03-31 19:44:48.084 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-03-31 19:44:48.084 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1853 ms
+2019-03-31 19:44:49.146 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:44:49.418 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 19:44:49.430 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 19:44:49.445 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 19:44:49.526 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 19:44:49.605 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 19:44:49.609 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 19:44:49.613 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 19:44:49.621 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 19:44:49.626 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 19:44:49.646 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-03-31 19:44:49.689 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-31 19:44:49.691 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 4.068 seconds (JVM running for 5.088)
+2019-03-31 19:45:10.227 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-31 19:45:10.227 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-03-31 19:45:10.239 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 11 ms
+2019-03-31 19:45:10.390 INFO [http-nio-8080-exec-1]io.lettuce.core.EpollProvider.<clinit>:68 -Starting without optional epoll library
+2019-03-31 19:45:10.392 INFO [http-nio-8080-exec-1]io.lettuce.core.KqueueProvider.<clinit>:70 -Starting without optional kqueue library
+2019-03-31 19:45:13.520 INFO [http-nio-8080-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-03-31 19:48:15.806 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 15072 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-03-31 19:48:15.813 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-03-31 19:48:16.985 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-03-31 19:48:16.988 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-03-31 19:48:17.061 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 29ms. Found 0 repository interfaces.
+2019-03-31 19:48:17.340 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$e1647926] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:48:17.399 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$66ad0d7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-31 19:48:17.682 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-03-31 19:48:17.694 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-03-31 19:48:17.702 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-03-31 19:48:17.702 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-03-31 19:48:17.707 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-03-31 19:48:17.826 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-03-31 19:48:17.826 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1952 ms
+2019-03-31 19:48:18.893 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-31 19:48:19.171 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-03-31 19:48:19.184 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-03-31 19:48:19.194 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-03-31 19:48:19.274 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-03-31 19:48:19.344 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-03-31 19:48:19.362 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-03-31 19:48:19.365 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-03-31 19:48:19.373 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-03-31 19:48:19.377 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-03-31 19:48:19.398 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-03-31 19:48:19.420 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-03-31 19:48:19.423 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 4.049 seconds (JVM running for 5.011)
+2019-03-31 19:48:33.164 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-31 19:48:33.165 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-03-31 19:48:33.176 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 11 ms
+2019-03-31 19:48:47.914 INFO [http-nio-8080-exec-7]io.lettuce.core.EpollProvider.<clinit>:68 -Starting without optional epoll library
+2019-03-31 19:48:47.915 INFO [http-nio-8080-exec-7]io.lettuce.core.KqueueProvider.<clinit>:70 -Starting without optional kqueue library
+2019-03-31 19:49:34.666 INFO [http-nio-8080-exec-8]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited

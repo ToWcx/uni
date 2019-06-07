@@ -1,0 +1,30 @@
+2019-05-14 20:34:25.447 ERROR[http-nio-8080-exec-2]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Preconditions.java
+报错方法是：
+	outOfBounds
+报错的行是：
+	64
+报错信息是：
+	Index 4 out-of-bounds for length 3
+2019-05-14 20:36:12.212 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Preconditions.java
+报错方法是：
+	outOfBounds
+报错的行是：
+	64
+报错信息是：
+	Index 4 out-of-bounds for length 3
+2019-05-14 20:36:55.337 ERROR[http-nio-8080-exec-1]edu.uni.exceptionHandler.GlobalExtHanler.logException:23 -# * # * # * # * # * # * # * # * # * # * [LogUtils]
+
+报错的文件是：
+	Preconditions.java
+报错方法是：
+	outOfBounds
+报错的行是：
+	64
+报错信息是：
+	Index 4 out-of-bounds for length 3

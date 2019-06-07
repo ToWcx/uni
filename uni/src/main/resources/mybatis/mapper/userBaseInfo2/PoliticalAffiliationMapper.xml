@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uni.userBaseInfo2.mapper.PoliticalAffiliationMapper" >
+  <resultMap id="BaseResultMap" type="edu.uni.userBaseInfo2.bean.PoliticalAffiliation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="political" property="political" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, political
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from political_affiliation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByZh" resultMap="BaseResultMap" >
+    select
+    id
+    from political_affiliation
+    where political = #{zh,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from political_affiliation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.uni.userBaseInfo2.bean.PoliticalAffiliation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into political_affiliation (political)
+    values (#{political,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.uni.userBaseInfo2.bean.PoliticalAffiliation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into political_affiliation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="political != null" >
+        political,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="political != null" >
+        #{political,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.uni.userBaseInfo2.bean.PoliticalAffiliation" >
+    update political_affiliation
+    <set >
+      <if test="political != null" >
+        political = #{political,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.uni.userBaseInfo2.bean.PoliticalAffiliation" >
+    update political_affiliation
+    set political = #{political,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

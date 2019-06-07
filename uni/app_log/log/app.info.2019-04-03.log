@@ -1,0 +1,32 @@
+2019-04-03 12:13:29.589 INFO [main]edu.uni.UniApplication.logStarting:50 -Starting UniApplication on PC-20181113EZMN with PID 4368 (F:\ideaWorkSpace\uni\target\classes started by Administrator in F:\ideaWorkSpace\uni)
+2019-04-03 12:13:29.592 INFO [main]edu.uni.UniApplication.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-04-03 12:13:30.591 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-04-03 12:13:30.594 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-03 12:13:30.629 INFO [main]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 17ms. Found 0 repository interfaces.
+2019-04-03 12:13:30.856 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'druidConfiguration' of type [edu.uni.config.DruidConfiguration$$EnhancerBySpringCGLIB$$de7c7d64] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-03 12:13:30.905 INFO [main]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$382d515] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-03 12:13:31.241 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8080 (http)
+2019-04-03 12:13:31.256 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-04-03 12:13:31.265 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-04-03 12:13:31.266 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-03 12:13:31.273 INFO [main]org.apache.catalina.core.AprLifecycleListener.log:173 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\Administrator\product\11.2.0\dbhome_1\bin;A:\developmentTools\VanDyke Software\Clients\;A:\developmentTools\Java\A:\developmentTools\Java\jdk1.8.0_181\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;A:\quickStart;A:\developmentTools\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;A:\developmentTools\apache-maven-3.6.0\bin;A:\developmentTools\mysql-8.0.15-winx64\bin;.]
+2019-04-03 12:13:31.368 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-04-03 12:13:31.368 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 1735 ms
+2019-04-03 12:13:32.538 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-03 12:13:32.835 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:120 -Context refreshed
+2019-04-03 12:13:32.853 INFO [main]s.d.spring.web.plugins.DocumentationPluginsBootstrapper.start:123 -Found 1 custom documentation plugin(s)
+2019-04-03 12:13:32.864 INFO [main]s.d.spring.web.scanners.ApiListingReferenceScanner.scan:41 -Scanning for api listing references
+2019-04-03 12:13:32.944 WARN [main]s.d.spring.web.readers.parameter.ParameterDataTypeReader.apply:87 -Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2019-04-03 12:13:33.013 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: createUsingPOST_1
+2019-04-03 12:13:33.017 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: destroyUsingDELETE_1
+2019-04-03 12:13:33.021 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: listUsingGET_1
+2019-04-03 12:13:33.029 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: receiveUsingGET_1
+2019-04-03 12:13:33.032 INFO [main]s.d.s.w.readers.operation.CachingOperationNameGenerator.startingWith:40 -Generating unique operation named: updateUsingPUT_1
+2019-04-03 12:13:33.054 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8080"]
+2019-04-03 12:13:33.077 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-04-03 12:13:33.079 INFO [main]edu.uni.UniApplication.logStarted:59 -Started UniApplication in 3.988 seconds (JVM running for 5.299)
+2019-04-03 12:13:40.678 INFO [http-nio-8080-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-04-03 12:13:40.678 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-04-03 12:13:40.688 INFO [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 10 ms
+2019-04-03 12:13:47.070 INFO [http-nio-8080-exec-2]io.lettuce.core.EpollProvider.<clinit>:68 -Starting without optional epoll library
+2019-04-03 12:13:47.071 INFO [http-nio-8080-exec-2]io.lettuce.core.KqueueProvider.<clinit>:70 -Starting without optional kqueue library
