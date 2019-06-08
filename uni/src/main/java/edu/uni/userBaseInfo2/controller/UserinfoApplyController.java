@@ -72,9 +72,11 @@ public class UserinfoApplyController {
 
             //插入申请表的基础信息
             userinfoApplyResultModel.setApplyReason(userinfoApplys.get(x).getApplyReason());
-            if(userinfoApplys.get(x).getApplyResult() == true){
-                userinfoApplyResultModel.setApplyResult(1); //1是通过 2是不通过 默认0是未审批
-            } else {
+            if(userinfoApplys.get(x).getApplyResult() == null){
+                userinfoApplyResultModel.setApplyResult(0); //1是通过 2是不通过 默认0是未审批
+            } else if(userinfoApplys.get(x).getApplyResult() == true){
+                userinfoApplyResultModel.setApplyResult(1);
+            }else{
                 userinfoApplyResultModel.setApplyResult(2);
             }
             userinfoApplyResultModel.setStartTime(userinfoApplys.get(x).getStartTime());
@@ -88,16 +90,19 @@ public class UserinfoApplyController {
             for(int i=0;i<userinfoApplyApprovals.size();i++){
                 ApprovalStepModel approvalStepModel = new ApprovalStepModel();
                 approvalStepModel.setReason(userinfoApplyApprovals.get(i).getReason());
-                approvalStepModel.setCheck_who(userinfoApplyApprovals.get(i).getCheckWho());
-                approvalStepModel.setStep(i);
-                if(userinfoApplyApprovals.get(i).getResult() == true){
-                    approvalStepModel.setResult(1); //1是通过 2是不通过 0是未审批
-                } else if(userinfoApplyApprovals.get(i).getResult() == false){
-                    approvalStepModel.setResult(2);
-                } else {
+                if(userinfoApplyApprovals.get(i).getCheckWho() != null){
+                    approvalStepModel.setCheck_who(userinfoApplyApprovals.get(i).getCheckWho());
+                }
+                approvalStepModel.setStep(userinfoApplyApprovals.get(i).getStep());
+                if(userinfoApplyApprovals.get(i).getResult() == null){
                     System.out.println("result为空");
                     approvalStepModel.setResult(0);
+                } else if(userinfoApplyApprovals.get(i).getResult() == true){
+                    approvalStepModel.setResult(1); //1是通过 2是不通过 0是未审批
+                } else {
+                    approvalStepModel.setResult(2);
                 }
+
                 approvalStepModels.add(approvalStepModel);
             }
             userinfoApplyResultModel.setApprovalStepModels(approvalStepModels);
