@@ -92,8 +92,11 @@ public class UserinfoApplyController {
                 approvalStepModel.setStep(i);
                 if(userinfoApplyApprovals.get(i).getResult() == true){
                     approvalStepModel.setResult(1); //1是通过 2是不通过 0是未审批
-                } else {
+                } else if(userinfoApplyApprovals.get(i).getResult() == false){
                     approvalStepModel.setResult(2);
+                } else {
+                    System.out.println("result为空");
+                    approvalStepModel.setResult(0);
                 }
                 approvalStepModels.add(approvalStepModel);
             }
