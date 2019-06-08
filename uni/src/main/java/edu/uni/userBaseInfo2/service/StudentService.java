@@ -28,12 +28,19 @@ public interface StudentService {
      */
     boolean update(Student student);
 
+//    /**
+//     * 根据userId 逻辑删除旧记录
+//     * @param userId
+//     * @return
+//     */
+//    boolean updateByUserId(long userId);
+
     /**
-     * 根据userId 逻辑删除旧记录
-     * @param userId
+     * 根据表id 逻辑删除旧记录
+     * @param id
      * @return
      */
-    boolean updateByUserId(long userId);
+    boolean updateById(long id);
 
     /**
      * 根据id 查找

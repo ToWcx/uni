@@ -26,8 +26,10 @@ public interface StudentMapper {
     List<Student> selectIdsByClass(Long classId);
     //把记录置为有效
     int updateTrueById(Long id);
+    //逻辑删除旧记录
+    int updateById(Long id);
 
-    int updateByUserId(Long userId);
+//    int updateByUserId(Long userId);
 
     int updateByPrimaryKeySelective(Student record);
 

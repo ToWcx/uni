@@ -92,6 +92,11 @@
       </if>
     </trim>
   </insert>
+  <update id="updateById" >
+    update ecomm
+    set deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <update id="updateTrueById" >
     update ecomm
     set deleted = 0

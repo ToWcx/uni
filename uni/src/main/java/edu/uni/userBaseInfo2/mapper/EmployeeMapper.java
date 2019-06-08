@@ -21,8 +21,11 @@ public interface EmployeeMapper {
     int deleteByUserId(Long id);
     
     Employee selectById(Long id);
-    //删除旧信息
-    int updateByUserId(Long id);
+
+//    int updateByUserId(Long id);
+    //根据表id逻辑删除旧信息
+    int updateById(Long id);
+
     //将记录置为有效
     int updateTrueById(Long id);
 

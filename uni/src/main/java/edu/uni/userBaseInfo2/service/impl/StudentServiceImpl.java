@@ -43,9 +43,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean updateByUserId(long id) {
-        return studentMapper.updateByUserId(id) > 0 ? true : false;
+    public boolean updateById(long id) {
+        return studentMapper.updateById(id) > 0 ? true : false;
     }
+
+//    @Override
+//    public boolean updateByUserId(long id) {
+//        return studentMapper.updateByUserId(id) > 0 ? true : false;
+//    }
 
     @Override
     public boolean updateTrueById(long id) {

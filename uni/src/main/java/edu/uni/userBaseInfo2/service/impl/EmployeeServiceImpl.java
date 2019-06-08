@@ -61,6 +61,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean insert(Employee employee) {
         return employeeMapper.insert(employee)>0 ? true:false;
     }
+
+    @Override
+    public boolean updateById(long id) {
+        return employeeMapper.updateById(id) > 0 ? true : false;
+    }
 //
 //    @Override
 //    public boolean update(Employee employee) {
@@ -72,10 +77,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.deleteByUserId(id)>0 ? true : false;
     }
 
-    @Override
-    public boolean updateByUserId(long id) {
-        return employeeMapper.updateByUserId(id) > 0 ? true : false;
-    }
+//    @Override
+//    public boolean updateByUserId(long id) {
+//        return employeeMapper.updateByUserId(id) > 0 ? true : false;
+//    }
 
     @Override
     public boolean updateTrueById(long id) {

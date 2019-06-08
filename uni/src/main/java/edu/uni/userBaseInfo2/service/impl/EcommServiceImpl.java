@@ -29,14 +29,19 @@ public class EcommServiceImpl implements EcommService {
         return ecommMapper.updateByPrimaryKeySelective(ecomm) > 0 ? true : false;
     }
 
-    @Override
-    public boolean updateByUserIdAndFlag(long id, int flag) {
-        return ecommMapper.updateByUserIdAndFlag(id,flag) > 0 ? true : false;
-    }
+//    @Override
+//    public boolean updateByUserIdAndFlag(long id, int flag) {
+//        return ecommMapper.updateByUserIdAndFlag(id,flag) > 0 ? true : false;
+//    }
 
     @Override
     public boolean updateTrueById(long id) {
         return ecommMapper.updateTrueById(id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean updateById(long id) {
+        return ecommMapper.updateById(id) > 0 ? true : false;
     }
 
     @Override

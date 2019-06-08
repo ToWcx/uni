@@ -173,7 +173,7 @@ public class UserinfoApplyApprovalController {
                     } else if(approvalMainName.equals("学生申请修改通讯") || approvalMainName.equals("职员申请修改通讯")){
                         Ecomm ecomm = ecommService.select(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
-                            if(ecommService.updateByUserIdAndFlag(ecomm.getUserId(),ecomm.getFlag()) == true){
+                            if(ecommService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有通讯记录成功");
                                 ecommService.updateTrueById(newId);
                                 System.out.println("更新"+approvalMainName+"通讯信息成功");
@@ -194,7 +194,7 @@ public class UserinfoApplyApprovalController {
                     } else if(approvalMainName.equals("辅导员申请修改学生信息")){
                         Student student = studentService.selectBean(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
-                            if(studentService.updateByUserId(student.getUserId()) == true){
+                            if(studentService.updateById(oldId) == true){
                                 System.out.println("studentController.update -> 删除已有学生记录成功");
                                 studentService.updateTrueById(newId);
                                 System.out.println("更新学生信息成功");
@@ -235,7 +235,7 @@ public class UserinfoApplyApprovalController {
                     } else if(approvalMainName.equals("人事处申请修改职员信息")){
                         Employee employee = employeeService.selectById(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
-                            if(employeeService.updateByUserId(employee.getUserId()) == true){
+                            if(employeeService.updateById(employee.getUserId()) == true){
                                 System.out.println("studentController.update -> 删除已有职员记录成功");
                                 employeeService.updateTrueById(newId);
                                 System.out.println("更新职员信息成功");
@@ -253,28 +253,7 @@ public class UserinfoApplyApprovalController {
                                 return Result.build(ResultType.Failed);
                             }
                         }
-                    } else if(approvalMainName.equals("人事处申请修改职员信息")){
-                        Employee employee = employeeService.selectById(oldId);
-                        if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
-                            if(employeeService.updateByUserId(employee.getUserId()) == true){
-                                System.out.println("studentController.update -> 删除已有职员记录成功");
-                                employeeService.updateTrueById(newId);
-                                System.out.println("更新职员信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
-                            }else {
-                                System.out.println("EcommController.update -> 删除已有职员记录失败");
-                                return Result.build(ResultType.Failed);
-                            }
-                        }
-                    }else {
+                    } else {
                         System.out.println("申请修改其他类型 暂无其他类型代码 审批结束");
                     }
                 } else if(step <= stepCnt && result == 1) {  //审批通过且审批未结束

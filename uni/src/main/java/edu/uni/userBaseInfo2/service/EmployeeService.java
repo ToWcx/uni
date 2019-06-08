@@ -6,14 +6,22 @@ import edu.uni.userBaseInfo2.service.model.*;
 import java.util.List;
 
 public interface EmployeeService {
-    //插入新数据
+
     boolean insert(Employee employee);
+
+//    /**
+//     * 逻辑删除旧记录
+//     * @param id
+//     * @return
+//     */
+//    boolean updateByUserId(long id);
+
     /**
-     * 逻辑删除旧记录
+     * 根据表id 逻辑删除旧记录
      * @param id
      * @return
      */
-    boolean updateByUserId(long id);
+    boolean updateById(long id);
 
     /**
      * 根据id将记录置为有效
@@ -21,9 +29,8 @@ public interface EmployeeService {
      * @return
      */
     boolean updateTrueById(long id);
-    //删除数据
+
     boolean delete(Long id);
-    //查找类别
 
     /**
      * 查询当前有效教职工信息

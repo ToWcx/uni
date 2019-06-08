@@ -22,6 +22,8 @@ public interface EcommMapper {
 
     int updateTrueById(Long id);
 
+    int updateById(Long id);
+
     int updateByPrimaryKeySelective(Ecomm record);
 
     int updateByPrimaryKey(Ecomm record);
