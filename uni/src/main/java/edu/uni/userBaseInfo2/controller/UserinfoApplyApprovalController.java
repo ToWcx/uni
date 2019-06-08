@@ -124,8 +124,8 @@ public class UserinfoApplyApprovalController {
             boolean success = userinfoApplyApprovalService.update(userinfoApplyApproval);
             if(success){
                 System.out.println("更新审批流程表成功");
-                cache.delete(CacheNameHelper.Receive_CacheNamePrefix + userinfoApplyApproval.getId());
-                cache.delete(CacheNameHelper.ListAll_CacheName);
+//                cache.delete(CacheNameHelper.Receive_CacheNamePrefix + userinfoApplyApproval.getId());
+//                cache.delete(CacheNameHelper.ListAll_CacheName);
 
                 UserinfoApplyApproval uIApplyApproval = userinfoApplyApprovalService.select(uAAId);
                 long uAId = uIApplyApproval.getUserinfoApplyId();   //用户申请表id
@@ -152,7 +152,7 @@ public class UserinfoApplyApprovalController {
 //                        if(addr != null){   //若已存在地址信息 删除
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             Address address = addressService.select(oldId);
-                            if(addressService.updateByUserIdAndFlag(address.getUserId(),address.getFlag()) == true){
+                            if(addressService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有地址记录成功");
                                 addressService.updateTrueById(newId);
                                 System.out.println("更新"+approvalMainName+"地址信息成功");

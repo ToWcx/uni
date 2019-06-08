@@ -45,9 +45,14 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public boolean updateByUserIdAndFlag(long id, int flag) {
-        return addressMapper.updateByUserIdAndFlag(id,flag) > 0 ? true : false;
+    public boolean updateById(long id) {
+        return addressMapper.updateById(id) > 0 ? true : false;
     }
+
+//    @Override
+//    public boolean updateByUserIdAndFlag(long id, int flag) {
+//        return addressMapper.updateByUserIdAndFlag(id,flag) > 0 ? true : false;
+//    }
 
     @Override
     public Address select(long id) {

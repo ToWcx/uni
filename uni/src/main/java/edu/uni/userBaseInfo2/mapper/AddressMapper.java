@@ -25,6 +25,8 @@ public interface AddressMapper {
 
     int updateTrueById(Long id);
 
+    int updateById(Long id);
+
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);

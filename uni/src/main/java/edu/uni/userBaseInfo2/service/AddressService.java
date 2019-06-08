@@ -36,13 +36,20 @@ public interface AddressService {
      */
     boolean updateTrueById(long id);
 
+//    /**
+//     * 根据userId和flag逻辑删除地址记录
+//     * @param id
+//     * @param flag
+//     * @return
+//     */
+//    boolean updateByUserIdAndFlag(long id, int flag);
+
     /**
-     * 根据userId和flag逻辑删除地址记录
+     * 根据表id 逻辑删除地址记录
      * @param id
-     * @param flag
      * @return
      */
-    boolean updateByUserIdAndFlag(long id, int flag);
+    boolean updateById(long id);
 
     /**
      * 根据id查找地址记录
