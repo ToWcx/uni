@@ -38,7 +38,7 @@
   </select>
   <select id="selectByUAIdAndStep" resultMap="BaseResultMap" >
     select
-    check_who, result
+    check_who, result, reason
     from userinfo_apply_approval
     where userinfo_apply_id = #{uAId,jdbcType=BIGINT} and step = #{step,jdbcType=INTEGER}
   </select>

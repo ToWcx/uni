@@ -95,12 +95,15 @@ public class ApprovalServiceImpl implements ApprovalService {
                     //根据申请表id和step步数查找审批人
                     UserinfoApplyApproval userinfoApplyApproval1 = userinfoApplyApprovalMapper.selectByUAIdAndStep(userinfoApply.getId(),j);
                     long checkWho = userinfoApplyApproval1.getCheckWho();
+                    String reason = userinfoApplyApproval1.getReason();
                     approvalStepModel.setCheck_who(checkWho);
                     if(userinfoApplyApproval1.getResult() == true){
                         approvalStepModel.setResult(1);
                     } else {
                         approvalStepModel.setResult(2);
                     }
+                    approvalStepModel.setReason(reason);
+
                     approvalStepModels.add(approvalStepModel);
                 }
             }

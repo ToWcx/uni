@@ -15,6 +15,8 @@ public class ApprovalStepModel {
 //    private boolean result;
     private int result;
 
+    private String reason;
+
     public long getCheck_who() {
         return check_who;
     }
@@ -39,12 +41,21 @@ public class ApprovalStepModel {
         this.result = result;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     @Override
     public String toString() {
         return "ApprovalStepModel{" +
                 "check_who=" + check_who +
                 ", step=" + step +
                 ", result=" + result +
+                ", reason='" + reason + '\'' +
                 '}';
     }
 }
