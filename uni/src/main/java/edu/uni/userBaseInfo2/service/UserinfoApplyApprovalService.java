@@ -30,6 +30,13 @@ public interface UserinfoApplyApprovalService {
      * @return
      */
     UserinfoApplyApproval select(long id);
+
+    /**
+     * 根据用户申请表Id 和审批步数查找到对应审批流程表
+     * @param id
+     * @return
+     */
+    List<UserinfoApplyApproval> selectByUAId(long id);
 //
 //    /**
 //     *

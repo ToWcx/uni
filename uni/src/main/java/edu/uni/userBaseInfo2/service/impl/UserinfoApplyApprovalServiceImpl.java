@@ -34,6 +34,11 @@ public class UserinfoApplyApprovalServiceImpl implements UserinfoApplyApprovalSe
         return userinfoApplyApprovalMapper.selectByPrimaryKey(id);
     }
 
+    @Override
+    public List<UserinfoApplyApproval> selectByUAId(long id) {
+        return userinfoApplyApprovalMapper.selectByUAId(id);
+    }
+
 //    @Override
 //    public UserinfoApplyApproval selectByUniIdAndName(Long universityId, String name) {
 //        return null;

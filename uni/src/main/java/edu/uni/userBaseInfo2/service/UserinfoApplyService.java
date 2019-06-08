@@ -2,6 +2,8 @@ package edu.uni.userBaseInfo2.service;
 
 import edu.uni.userBaseInfo2.bean.UserinfoApply;
 
+import java.util.List;
+
 /**
  * @Author wuchuxin
  * @Date 2019/5/12 18:56
@@ -22,6 +24,13 @@ public interface UserinfoApplyService {
      * @return
      */
     UserinfoApply select(long id);
+
+    /**
+     * 根据byWho查找用户申请表记录
+     * @param id
+     * @return
+     */
+    List<UserinfoApply> selectByUserId(long id);
 
     /**
      * 更新用户申请表

@@ -6,6 +6,8 @@ import edu.uni.userBaseInfo2.service.UserinfoApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * @Author wuchuxin
@@ -31,6 +33,11 @@ public class UserinfoApplyServiceImpl implements UserinfoApplyService {
     @Override
     public UserinfoApply select(long id) {
         return userinfoApplyMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<UserinfoApply> selectByUserId(long id) {
+        return userinfoApplyMapper.selectByUserId(id);
     }
 
     @Override

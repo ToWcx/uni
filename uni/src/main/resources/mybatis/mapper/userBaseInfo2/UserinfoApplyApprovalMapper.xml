@@ -42,6 +42,12 @@
     from userinfo_apply_approval
     where userinfo_apply_id = #{uAId,jdbcType=BIGINT} and step = #{step,jdbcType=INTEGER}
   </select>
+  <select id="selectByUAId" resultMap="BaseResultMap" >
+    select
+    check_who, result, reason, step
+    from userinfo_apply_approval
+    where userinfo_apply_id = #{id,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from userinfo_apply_approval
     where id = #{id,jdbcType=BIGINT}
