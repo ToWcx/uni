@@ -4,6 +4,7 @@ import edu.uni.userBaseInfo2.bean.EmployeeHistory;
 import edu.uni.userBaseInfo2.mapper.EmployeeHistoryMapper;
 import edu.uni.userBaseInfo2.service.EmployeeHistoryService;
 import edu.uni.userBaseInfo2.service.model.EmployeeHistoryModel;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,7 @@ public class EmployeeHistoryServiceImpl implements EmployeeHistoryService {
         List<EmployeeHistoryModel> employeeHistoryModels = new ArrayList<>();
         for(int i=0;i<employeeHistories.size();i++){
             EmployeeHistoryModel employeeHistoryModel = new EmployeeHistoryModel();
-            employeeHistoryModel.setBeginTime(employeeHistories.get(i).getBeginTime());
-            employeeHistoryModel.setEndTime(employeeHistories.get(i).getEndTime());
-            employeeHistoryModel.setDescript(employeeHistories.get(i).getDescript());
+            BeanUtils.copyProperties(employeeHistories.get(i),employeeHistoryModel);
             employeeHistoryModels.add(employeeHistoryModel);
         }
         return employeeHistoryModels;

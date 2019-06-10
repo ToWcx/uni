@@ -5,12 +5,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 public class EmployeeHistoryModel {
+    private Long id;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date beginTime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     private String descript;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Date getBeginTime() {
         return beginTime;

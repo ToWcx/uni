@@ -44,7 +44,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 //        roleNames.add("6"); //书记权限
 //        roleNames.add("7"); //副院长权限
 //        roleNames.add("8"); //院长权限
-
         roleNames.add("9"); //副处长权限
         roleNames.add("10"); //处长权限
 

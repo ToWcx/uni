@@ -24,7 +24,7 @@
     select
     <include refid="Base_Column_List" />
     from employee_history
-    where user_id = #{id,jdbcType=BIGINT}
+    where user_id = #{id,jdbcType=BIGINT} and deleted = 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from employee_history
