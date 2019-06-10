@@ -6,14 +6,15 @@ import edu.uni.userBaseInfo2.bean.ApprovalMain;
 import edu.uni.userBaseInfo2.bean.EmployeeHistory;
 import edu.uni.userBaseInfo2.bean.UserinfoApply;
 import edu.uni.userBaseInfo2.bean.UserinfoApplyApproval;
+import edu.uni.userBaseInfo2.controller.approvalUtil.EmployeeHistoryAU;
 import edu.uni.userBaseInfo2.controller.viewObject.EmployeeHistoryVO;
-import edu.uni.userBaseInfo2.service.EmployeeHistoryService;
-import edu.uni.userBaseInfo2.service.EmployeeService;
+import edu.uni.userBaseInfo2.service.*;
 import edu.uni.userBaseInfo2.service.model.EmployeeHistoryModel;
 import edu.uni.utils.RedisCache;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,15 @@ public class EmployeeHistoryController {
     @Autowired
     private EmployeeHistoryService employeeHistoryService;
     @Autowired
-    private EmployeeService employeeService;
+    private ApprovalMainService approvalMainService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserinfoApplyService userinfoApplyService;
+    @Autowired
+    private ApprovalStepInchargeService approvalStepInchargeService;
+    @Autowired
+    private UserinfoApplyApprovalService userinfoApplyApprovalService;
     @Autowired
     private RedisCache cache;
     /**
@@ -67,91 +76,92 @@ public class EmployeeHistoryController {
         return Result.build(ResultType.ParamError);
     }
 
-//    /**
-//     * 更新类别
-//     * @param learningDegreeAU
-//     * @return
-//     */
-//    @Transactional
-//    @ApiOperation(value="用户申请修改学历", notes="未测试")
-//    @ApiImplicitParam(name = "learningDegreeAU", value = "类别实体", required = true, dataType = "LearningDegreeAU")
-//    @PutMapping("/learningDegree")
-//    @ResponseBody
-//    public Result updateStudent(@RequestBody(required = false) LearningDegreeAU learningDegreeAU){
-//        if(learningDegreeAU != null) {
-//            LearningDegreeModel learningDegreeModel = learningDegreeAU.getLearningDegreeModel();
-//            LearningDegree learningDegree = convertBeanFromModel(learningDegreeModel);
-//            UserinfoApply userinfoApply = learningDegreeAU.getUserinfoApply();
-//            Date date = new Date();
-//            long userId = userinfoApply.getByWho();
-//            learningDegree.setUserId(userId);
-//            learningDegree.setDatetime(date);
-//            learningDegree.setDeleted(true);  //改
-//            learningDegree.setByWho(userId);
-//
-//            boolean isSuccess = learningDegreeService.insert(learningDegree);
-//            if (isSuccess == true) {    //插入成功
-//                System.out.println("插入新学历成功");
-//                long aId = learningDegree.getId(); //新纪录id
-//                userinfoApply.setNewInfoId(aId);
-//                userinfoApply.setStartTime(date);
-//                userinfoApply.setDatetime(date);
-//                //根据userId查到用户的学校id
-//                Long uniId = userService.selectUniIdById(userinfoApply.getByWho()).getUniversityId();
-//                //根据学校id和业务类型name="地址业务"找到唯一的步数规定表,获取该业务步数stepCnt以及该表id
-//                ApprovalMain approvalMain = approvalMainService.selectByUniIdAndName(uniId,"人事处申请修改职员学历");
-//                long AMId = approvalMain.getId();
-//                if(approvalMain == null){
-//                    System.out.println("approvalMain为空 查询不到该审批步数规定表");
-//                    return Result.build(ResultType.Failed);
-//                }
-//                userinfoApply.setApprovalMainId(AMId);
-//                userinfoApply.setInfoType(4);
-//                userinfoApply.setUniversityId(uniId);
-//                userinfoApply.setDeleted(false);
-//                //把userinfoApply插入到数据库
-//                boolean uiASuccess = userinfoApplyService.insert(userinfoApply);
-//                if(uiASuccess == true){
-//                    System.out.println("userinfoApply插入成功");
-//                }else {
-//                    System.out.println("userinfoApply插入失败");
-//                    return Result.build(ResultType.Failed);
-//                }
-//                int step = 1;
-//                //缺少接口
-//                long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
-//                //获取角色
-//                //根据roleId获取roleName
-//                String roleName = roleId+"";
-//                UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
-//                userinfoApplyApproval.setUniversityId(uniId);
-//                userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
-//                userinfoApplyApproval.setStep(step);
-//                userinfoApplyApproval.setRoleName(roleName);
-//                userinfoApplyApproval.setInfoType(userinfoApply.getInfoType());
-//                userinfoApplyApproval.setApplyUserId(userId);
-//                userinfoApplyApproval.setDatetime(date);
-//                userinfoApplyApproval.setByWho(userId);
-//                userinfoApplyApproval.setDeleted(false);
-//
-//                boolean success = userinfoApplyApprovalService.insert(userinfoApplyApproval);
-//                if (success) {
-//                    //什么时候删除缓存？ 成功审批后吗？  放到最后一步再删除？
-////                        cache.delete(CacheNameHelper.Receive_CacheNamePrefix + ecomm.getId());
-////                        cache.delete(CacheNameHelper.ListAll_CacheName);
-//                    System.out.println("插入审批流程表成功");
-//                    return Result.build(ResultType.Success);
-//                } else {
-//                    return Result.build(ResultType.Failed);
-//                }
-//
-//            }else {
-//                System.out.println("修改学历信息失败 无法插入通讯");
-//                return Result.build(ResultType.Failed);
-//            }
-//        }
-//        return Result.build(ResultType.ParamError);
-//    }
+    /**
+     * 更新类别
+     * @param employeeHistoryAU
+     * @return
+     */
+    @Transactional
+    @ApiOperation(value="职员申请修改简历", notes="未测试")
+    @ApiImplicitParam(name = "employeeHistoryAU", value = "类别实体", required = true, dataType = "EmployeeHistoryAU")
+    @PutMapping("/learningDegree")
+    @ResponseBody
+    public Result updateStudent(@RequestBody(required = false) EmployeeHistoryAU employeeHistoryAU){
+        if(employeeHistoryAU != null) {
+            EmployeeHistoryModel employeeHistoryModel = employeeHistoryAU.getEmployeeHistoryModel();
+            EmployeeHistory employeeHistory = new EmployeeHistory();
+            BeanUtils.copyProperties(employeeHistoryModel,employeeHistory);
+            UserinfoApply userinfoApply = employeeHistoryAU.getUserinfoApply();
+            Date date = new Date();
+            long userId = userinfoApply.getByWho();
+            employeeHistory.setUserId(userId);
+            employeeHistory.setDatetime(date);
+            employeeHistory.setDeleted(true);  //改
+            employeeHistory.setByWho(userId);
+
+            boolean isSuccess = employeeHistoryService.insert(employeeHistory);
+            if (isSuccess == true) {    //插入成功
+                System.out.println("插入新简历成功");
+                long aId = employeeHistory.getId(); //新纪录id
+                userinfoApply.setNewInfoId(aId);
+                userinfoApply.setStartTime(date);
+                userinfoApply.setDatetime(date);
+                //根据userId查到用户的学校id
+                Long uniId = userService.selectUniIdById(userinfoApply.getByWho()).getUniversityId();
+                //根据学校id和业务类型name="地址业务"找到唯一的步数规定表,获取该业务步数stepCnt以及该表id
+                ApprovalMain approvalMain = approvalMainService.selectByUniIdAndName(uniId,"人事处申请修改职员简历");
+                long AMId = approvalMain.getId();
+                if(approvalMain == null){
+                    System.out.println("approvalMain为空 查询不到该审批步数规定表");
+                    return Result.build(ResultType.Failed);
+                }
+                userinfoApply.setApprovalMainId(AMId);
+                userinfoApply.setInfoType(4);
+                userinfoApply.setUniversityId(uniId);
+                userinfoApply.setDeleted(false);
+                //把userinfoApply插入到数据库
+                boolean uiASuccess = userinfoApplyService.insert(userinfoApply);
+                if(uiASuccess == true){
+                    System.out.println("userinfoApply插入成功");
+                }else {
+                    System.out.println("userinfoApply插入失败");
+                    return Result.build(ResultType.Failed);
+                }
+                int step = 1;
+                //缺少接口
+                long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
+                //获取角色
+                //根据roleId获取roleName
+                String roleName = roleId+"";
+                UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
+                userinfoApplyApproval.setUniversityId(uniId);
+                userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
+                userinfoApplyApproval.setStep(step);
+                userinfoApplyApproval.setRoleName(roleName);
+                userinfoApplyApproval.setInfoType(userinfoApply.getInfoType());
+                userinfoApplyApproval.setApplyUserId(userId);
+                userinfoApplyApproval.setDatetime(date);
+                userinfoApplyApproval.setByWho(userId);
+                userinfoApplyApproval.setDeleted(false);
+
+                boolean success = userinfoApplyApprovalService.insert(userinfoApplyApproval);
+                if (success) {
+                    //什么时候删除缓存？ 成功审批后吗？  放到最后一步再删除？
+//                        cache.delete(CacheNameHelper.Receive_CacheNamePrefix + ecomm.getId());
+//                        cache.delete(CacheNameHelper.ListAll_CacheName);
+                    System.out.println("插入审批流程表成功");
+                    return Result.build(ResultType.Success);
+                } else {
+                    return Result.build(ResultType.Failed);
+                }
+
+            }else {
+                System.out.println("修改简历信息失败 无法插入简历");
+                return Result.build(ResultType.Failed);
+            }
+        }
+        return Result.build(ResultType.ParamError);
+    }
 
     /**
      * 删除教职工简历类别
@@ -213,6 +223,7 @@ public class EmployeeHistoryController {
 //      //  }
 //        response.getWriter().write(json);
 //    }
+
     private EmployeeHistoryVO convertEmployeeHistoryFromModel(List<EmployeeHistoryModel> employeeHistoryModel){
         System.out.println(employeeHistoryModel);
         if(employeeHistoryModel == null){

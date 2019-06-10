@@ -38,15 +38,15 @@ public class ApprovalServiceImpl implements ApprovalService {
 
         //根据user_id查询user_role表找到role_id,根据role_id查找role表找到role_name
         List<String> roleNames = new ArrayList<>();
-        roleNames.add("3");   //班主任权限
-        roleNames.add("4"); //辅导员权限
+//        roleNames.add("3");   //班主任权限
+//        roleNames.add("4"); //辅导员权限
 //        roleNames.add("5"); //副书记权限
 //        roleNames.add("6"); //书记权限
 //        roleNames.add("7"); //副院长权限
 //        roleNames.add("8"); //院长权限
 
-//        roleNames.add("9"); //副处长权限
-//        roleNames.add("10"); //处长权限
+        roleNames.add("9"); //副处长权限
+        roleNames.add("10"); //处长权限
 
         //根据roleName和学校id查找userinfo_apply_approval表找到审批流程表
         long uniId = userMapper.selectUniIdById(id).getUniversityId();

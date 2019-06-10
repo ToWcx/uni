@@ -13,5 +13,27 @@ public class EmployeeHistoryAU {
 
     private UserinfoApply userinfoApply;
 
+    public EmployeeHistoryModel getEmployeeHistoryModel() {
+        return employeeHistoryModel;
+    }
 
+    public void setEmployeeHistoryModel(EmployeeHistoryModel employeeHistoryModel) {
+        this.employeeHistoryModel = employeeHistoryModel;
+    }
+
+    public UserinfoApply getUserinfoApply() {
+        return userinfoApply;
+    }
+
+    public void setUserinfoApply(UserinfoApply userinfoApply) {
+        this.userinfoApply = userinfoApply;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeHistoryAU{" +
+                "employeeHistoryModel=" + employeeHistoryModel +
+                ", userinfoApply=" + userinfoApply +
+                '}';
+    }
 }
