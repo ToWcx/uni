@@ -15,6 +15,10 @@ public interface EmployeeHistoryMapper {
 
     //新增查询： 根据user_id查找该用户所有地址信息
     List<EmployeeHistory> selectByUserId(Long id);
+    //逻辑删除旧记录
+    int updateById(Long id);
+    //将记录置为有效
+    int updateTrueById(Long id);
 
     int updateByPrimaryKeySelective(EmployeeHistory record);
 

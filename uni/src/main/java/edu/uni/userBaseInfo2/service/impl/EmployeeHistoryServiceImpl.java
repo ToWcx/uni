@@ -32,6 +32,16 @@ public class EmployeeHistoryServiceImpl implements EmployeeHistoryService {
     }
 
     @Override
+    public boolean updateById(Long id) {
+        return employeeHistoryMapper.updateById(id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean updateTrueById(Long id) {
+        return employeeHistoryMapper.updateTrueById(id) > 0 ? true : false;
+    }
+
+    @Override
     public List<EmployeeHistoryModel> selectAll(long id) {
         List<EmployeeHistory> employeeHistories = employeeHistoryMapper.selectByUserId(id);
         List<EmployeeHistoryModel> employeeHistoryModels = convertFromBean(employeeHistories);

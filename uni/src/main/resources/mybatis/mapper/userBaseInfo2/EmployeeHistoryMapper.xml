@@ -93,6 +93,16 @@
       </if>
     </trim>
   </insert>
+  <update id="updateById" parameterType="edu.uni.userBaseInfo2.bean.EmployeeHistory" >
+    update employee_history
+    set deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateTrueById" parameterType="edu.uni.userBaseInfo2.bean.EmployeeHistory" >
+    update employee_history
+    set deleted = 0
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.uni.userBaseInfo2.bean.EmployeeHistory" >
     update employee_history
     <set >

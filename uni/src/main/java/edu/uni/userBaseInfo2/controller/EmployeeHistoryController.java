@@ -84,9 +84,9 @@ public class EmployeeHistoryController {
     @Transactional
     @ApiOperation(value="职员申请修改简历", notes="未测试")
     @ApiImplicitParam(name = "employeeHistoryAU", value = "类别实体", required = true, dataType = "EmployeeHistoryAU")
-    @PutMapping("/learningDegree")
+    @PutMapping("/employeeHistory")
     @ResponseBody
-    public Result updateStudent(@RequestBody(required = false) EmployeeHistoryAU employeeHistoryAU){
+    public Result updateEmployeeHistory(@RequestBody(required = false) EmployeeHistoryAU employeeHistoryAU){
         if(employeeHistoryAU != null) {
             EmployeeHistoryModel employeeHistoryModel = employeeHistoryAU.getEmployeeHistoryModel();
             EmployeeHistory employeeHistory = new EmployeeHistory();

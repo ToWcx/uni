@@ -12,9 +12,23 @@ public interface EmployeeHistoryService {
     boolean update(EmployeeHistory employeeHistory);
     //删除数据
     boolean delete(Long id);
+
+    /**
+     * 根据表id逻辑删除旧记录
+     * @param id
+     * @return
+     */
+    boolean updateById(Long id);
+
+    /**
+     * 将记录置为有效
+     * @param id
+     * @return
+     */
+    boolean updateTrueById(Long id);
+    //
     //按照id查找
     //EmployeeHistoryModel select(Long id);
     //查找所有类别
     List<EmployeeHistoryModel> selectAll(long id);
-
 }

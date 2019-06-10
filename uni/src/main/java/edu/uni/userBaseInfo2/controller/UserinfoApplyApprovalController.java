@@ -52,6 +52,8 @@ public class UserinfoApplyApprovalController {
     @Autowired
     private LearningDegreeService learningDegreeService;
     @Autowired
+    private EmployeeHistoryService employeeHistoryService;
+    @Autowired
     private RedisCache cache;
 
     /**
@@ -229,6 +231,26 @@ public class UserinfoApplyApprovalController {
                                 }
                             }else {
                                 System.out.println("EcommController.update -> 删除已有学历记录失败");
+                                return Result.build(ResultType.Failed);
+                            }
+                        }
+                    } else if(approvalMainName.equals("人事处申请修改职员简历")){
+                        if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
+                            if(employeeHistoryService.updateById(oldId) == true){
+                                System.out.println("employeeHistoryController.update -> 删除已有简历记录成功");
+                                employeeHistoryService.updateTrueById(newId);
+                                System.out.println("更新简历信息成功");
+                                Date endTime = new Date();
+                                userinfoApply.setEndTime(endTime);
+                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                                if(userinfoApplyService.update(userinfoApply) == true) {
+                                    System.out.println("更新用户信息表成功");
+                                } else {
+                                    System.out.println("更新用户信息表失败");
+                                    return Result.build(ResultType.Failed);
+                                }
+                            }else {
+                                System.out.println("EcommController.update -> 删除已有简历记录失败");
                                 return Result.build(ResultType.Failed);
                             }
                         }
