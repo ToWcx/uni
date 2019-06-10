@@ -94,6 +94,7 @@ public class EmployeeHistoryController {
             UserinfoApply userinfoApply = employeeHistoryAU.getUserinfoApply();
             Date date = new Date();
             long userId = userinfoApply.getByWho();
+            employeeHistory.setId(null);
             employeeHistory.setUserId(userId);
             employeeHistory.setDatetime(date);
             employeeHistory.setDeleted(true);  //改
