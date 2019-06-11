@@ -1,6 +1,7 @@
 package edu.uni.userBaseInfo2.controller.viewObject;
 
 public class EmployeeVO {
+    private Long id;
 
     private String empNo;
 
@@ -13,6 +14,14 @@ public class EmployeeVO {
     private String position;
 
     private String political;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEmpNo() {
         return empNo;
@@ -65,7 +74,8 @@ public class EmployeeVO {
     @Override
     public String toString() {
         return "EmployeeVO{" +
-                "empNo='" + empNo + '\'' +
+                "id=" + id +
+                ", empNo='" + empNo + '\'' +
                 ", department='" + department + '\'' +
                 ", subdepartment='" + subdepartment + '\'' +
                 ", discipline='" + discipline + '\'' +

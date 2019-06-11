@@ -5,8 +5,8 @@ import edu.uni.userBaseInfo2.service.model.EmployeeHistoryModel;
 import java.util.List;
 
 public class EmployeeHistoryVO {
-
     private Long userId;
+
     private List<EmployeeHistoryModel> employeeHistoryModel;
 
     public Long getUserId() {

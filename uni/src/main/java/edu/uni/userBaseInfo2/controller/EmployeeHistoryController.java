@@ -64,6 +64,9 @@ public class EmployeeHistoryController {
     @ResponseBody
     public Result addEmployeeHistory(@RequestBody(required = false) EmployeeHistory employeeHistory){
         if(employeeHistory!=null){
+            Date date = new Date();
+            employeeHistory.setDeleted(false);
+            employeeHistory.setDatetime(date);
             boolean success = employeeHistoryService.insert(employeeHistory);
             if(success){
                 //清空相关缓存
