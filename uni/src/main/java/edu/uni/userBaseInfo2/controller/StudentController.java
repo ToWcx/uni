@@ -33,6 +33,7 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
     private RedisCache cache;
     @Autowired
     private AddressService addressService;
