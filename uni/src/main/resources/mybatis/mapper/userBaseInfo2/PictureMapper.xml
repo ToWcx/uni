@@ -24,7 +24,7 @@
     select
     <include refid="Base_Column_List" />
     from picture
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{id,jdbcType=BIGINT} and deleted = 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from picture

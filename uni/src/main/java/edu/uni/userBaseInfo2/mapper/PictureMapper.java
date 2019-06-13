@@ -12,9 +12,8 @@ public interface PictureMapper {
     int insertSelective(Picture record);
 
     Picture selectByPrimaryKey(Long id);
-
-    //新增查询： 根据user_id查找该用户所有地址信息
-    List<Picture> selectByUserId(Long id);
+    //每个用户暂时只存一张照片
+    Picture selectByUserId(Long id);
 
     int updateByPrimaryKeySelective(Picture record);
 

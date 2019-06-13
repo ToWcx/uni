@@ -37,11 +37,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public List<PictureModel> selectAll(long id) {
-        List<Picture> pictures = pictureMapper.selectByUserId(id);
-        List<PictureModel> pictureModels = convertFromBean(pictures);
-        System.out.println(pictureModels);
-        return pictureModels;
+    public Picture selectByUserId(long id) {
+        return pictureMapper.selectByUserId(id);
     }
 
     private List<PictureModel> convertFromBean(List<Picture> pictures){

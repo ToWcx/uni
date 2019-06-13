@@ -35,8 +35,8 @@ public interface PictureService {
     Picture select(long type);
 
     /**
-     * 查找所有类别
+     * 根据userId查找用户照片
      * @return
      */
-    List<PictureModel> selectAll(long id);
+    Picture selectByUserId(long id);
 }
