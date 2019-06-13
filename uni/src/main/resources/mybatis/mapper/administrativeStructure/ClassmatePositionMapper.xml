@@ -91,6 +91,12 @@
     from classmate_position
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectClassmateIdByPositionId"  resultMap="BaseResultMap"  >
+    select
+    classmate_id
+    from classmate_position
+    where position_id = #{id,jdbcType=BIGINT} and deleted = 0
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from classmate_position
     where id = #{id,jdbcType=BIGINT}

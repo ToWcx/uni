@@ -33,6 +33,11 @@
       #{id.userId}
     </foreach>
   </select>
+  <select id="selectUserNameByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    user_name
+    from user where id = #{id.userId}
+  </select>
   <select id="selectUniIdById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     university_id

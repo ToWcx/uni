@@ -52,6 +52,12 @@
     from student
     where class_id = #{classId,jdbcType=BIGINT} and deleted = 0 order by user_id ASC
   </select>
+  <select id="selectStuByClass" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where class_id = #{classId,jdbcType=BIGINT} and deleted = 0 order by user_id ASC
+  </select>
   <select id="selectIdsByClass" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     user_id

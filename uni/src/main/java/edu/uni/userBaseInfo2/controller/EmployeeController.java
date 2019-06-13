@@ -1,5 +1,7 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.administrativestructure.bean.Department;
+import edu.uni.administrativestructure.service.DepartmentService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -7,15 +9,10 @@ import edu.uni.userBaseInfo2.bean.Employee;
 import edu.uni.userBaseInfo2.bean.UserinfoApply;
 import edu.uni.userBaseInfo2.bean.UserinfoApplyApproval;
 import edu.uni.userBaseInfo2.controller.approvalUtil.EmployeeAU;
-import edu.uni.userBaseInfo2.controller.viewObject.ClassStudentVO;
-import edu.uni.userBaseInfo2.controller.viewObject.DepartmentStudentVO;
-import edu.uni.userBaseInfo2.controller.viewObject.EmployeeInfoVO;
-import edu.uni.userBaseInfo2.controller.viewObject.EmployeeVO;
+import edu.uni.userBaseInfo2.controller.viewObject.*;
+import edu.uni.userBaseInfo2.mapper.EmployeeMapper;
 import edu.uni.userBaseInfo2.service.*;
-import edu.uni.userBaseInfo2.service.model.ClassToStudentListModel;
-import edu.uni.userBaseInfo2.service.model.ClassToStudentModel;
-import edu.uni.userBaseInfo2.service.model.DepartmentToStudentListModel;
-import edu.uni.userBaseInfo2.service.model.EmployeeModel;
+import edu.uni.userBaseInfo2.service.model.*;
 import edu.uni.utils.RedisCache;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -53,6 +50,14 @@ public class EmployeeController {
     private ApprovalStepInchargeService approvalStepInchargeService;
     @Autowired
     private UserinfoApplyApprovalService userinfoApplyApprovalService;
+    @Autowired
+    private LearningDegreeService learningDegreeService;
+    @Autowired
+    private EmployeeMapper employeeMapper;
+    @Autowired
+    private DepartmentService departmentService;
+    @Autowired
+    private EmployeeHistoryService employeeHistoryService;
     @Autowired
     private RedisCache cache;
     /**
@@ -249,6 +254,88 @@ public class EmployeeController {
 //        }
         response.getWriter().write(json);
     }
+
+    /**
+     * 查看所授课班级信息
+     * 根据id获取授课班级信息
+     * @param id
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="查看所授课班级信息", notes="未测试")
+    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/employee/listByTeachClass/{id}")
+    public void ListByTeachClass(@PathVariable Long id,HttpServletResponse response) throws  IOException{
+        response.setContentType("application/json;charset=utf-8");
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        List<TeachClassModel> teachClassModels = employeeService.selectTeachClass(id);
+        System.out.println("test");
+        TeachClassVO teachClassVO =convertTeachClassFromModel(teachClassModels);
+        Long departmentId = employeeMapper.selectByUserId(id).getDepartmentId();
+        Department department = departmentService.select(departmentId);
+        teachClassVO.setDepartment(department.getName());
+        String json = Result.build(ResultType.Success).appendData("teachClass",teachClassVO).convertIntoJSON();
+        //  cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
+     * 按照userid查看所处学院的所有班级信息
+     * @param id
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="按照userid查看所处学院的所有班级信息", notes="未测试")
+    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/employee/listByselectDepartment/{id}")
+    public void ListByselectDepartment(@PathVariable Long id,HttpServletResponse response) throws  IOException{
+        response.setContentType("application/json;charset=utf-8");
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        List<TeachClassModel> teachClassModels = employeeService.selectDepartment(id);
+        System.out.println("test");
+        TeachClassVO teachClassVO =convertTeachClassFromModel(teachClassModels);
+        Long departmentId = employeeMapper.selectByUserId(id).getDepartmentId();
+        Department department = departmentService.select(departmentId);
+        teachClassVO.setDepartment(department.getName());
+        String json = Result.build(ResultType.Success).appendData("teachClass",teachClassVO).convertIntoJSON();
+        //  cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+    /**
+     * 查看班主任所带班级信息（根据userid）
+     * @param id
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="查看所带班级信息", notes="未测试")
+    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/employee/listByClassStuForHeadteacher/{id}")
+    public void ListByClassStuForHeadteacher(@PathVariable Long id,HttpServletResponse response) throws  IOException{
+        response.setContentType("application/json;charset=utf-8");
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        List<TeachClassModel> teachClassModels = employeeService.selectClassStuForHeadteacher(id);
+        System.out.println("test");
+        TeachClassVO teachClassVO =convertTeachClassFromModel(teachClassModels);
+        Long departmentId = employeeMapper.selectByUserId(id).getDepartmentId();
+        Department department = departmentService.select(departmentId);
+        teachClassVO.setDepartment(department.getName());
+        String json = Result.build(ResultType.Success).appendData("teachClass",teachClassVO).convertIntoJSON();
+        //  cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
     /**
      * 查看本学院学生信息
      * 根据id获取学院学生的全部信息(包括历史信息)
@@ -274,30 +361,30 @@ public class EmployeeController {
         response.getWriter().write(json);
     }
 
-    /**
-     * 查看本学院学生信息
-     * 根据id获取学院学生的全部信息(有效信息)
-     * @param id
-     * @param response
-     * @throws IOException
-     */
-    @ApiOperation(value="根据类别id获取本学院学生全部信息(有效信息)", notes="未测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
-    @GetMapping("/employee/listByDepartmentdelete0ToStudent/{id}")
-    public void ListByDepartmentdelete0ToStudent( @PathVariable Long id,HttpServletResponse response) throws  IOException{
-        response.setContentType("application/json;charset=utf-8");
-        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
-//        测试的时候需注释掉cache缓存
-//        String json = cache.get(cacheName);
-//        if(json == null){
-        List<DepartmentToStudentListModel> departmentToStudentListModels = employeeService.selectdelete0DepartStudent(id);
-        DepartmentStudentVO departmentStudentVO =convertDepartmenttoStudentFromModel(departmentToStudentListModels);
-        departmentStudentVO.setUserId(id);
-        String json = Result.build(ResultType.Success).appendData("departmentStudentVO",departmentStudentVO).convertIntoJSON();
-        //  cache.set(cacheName, json);
-//        }
-        response.getWriter().write(json);
-    }
+//    /**
+//     * 查看本学院学生信息
+//     * 根据id获取学院学生的全部信息(有效信息)
+//     * @param id
+//     * @param response
+//     * @throws IOException
+//     */
+//    @ApiOperation(value="根据类别id获取本学院学生全部信息(有效信息)", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+//    @GetMapping("/employee/listByDepartmentdelete0ToStudent/{id}")
+//    public void ListByDepartmentdelete0ToStudent( @PathVariable Long id,HttpServletResponse response) throws  IOException{
+//        response.setContentType("application/json;charset=utf-8");
+//        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+////        测试的时候需注释掉cache缓存
+////        String json = cache.get(cacheName);
+////        if(json == null){
+//        List<DepartmentToStudentListModel> departmentToStudentListModels = employeeService.selectdelete0DepartStudent(id);
+//        DepartmentStudentVO departmentStudentVO =convertDepartmenttoStudentFromModel(departmentToStudentListModels);
+//        departmentStudentVO.setUserId(id);
+//        String json = Result.build(ResultType.Success).appendData("departmentStudentVO",departmentStudentVO).convertIntoJSON();
+//        //  cache.set(cacheName, json);
+////        }
+//        response.getWriter().write(json);
+//    }
 
     /**
      * 根据id查询教职工全部信息(
@@ -317,11 +404,13 @@ public class EmployeeController {
         employeeInfoVO.setAddressModels(addressService.selectAll(id));
         employeeInfoVO.setEcommModels(ecommService.selectAll(id));
         employeeInfoVO.setEmployeeModel(employeeService.select(id));
+        employeeInfoVO.setLearningDegreeModels(learningDegreeService.selectAll(id));
+        employeeInfoVO.setEmployeeHistoryModels(employeeHistoryService.selectAll(id));
         employeeInfoVO.setUserModel(null);
         System.out.println(employeeInfoVO);
-            String json= Result.build(ResultType.Success).appendData("employeeInfo",employeeInfoVO).convertIntoJSON();
-            //cache.set(cacheName,json);
-       // }
+        String json= Result.build(ResultType.Success).appendData("employeeInfo",employeeInfoVO).convertIntoJSON();
+        //cache.set(cacheName,json);
+        // }
         response.getWriter().write(json);
     }
 
@@ -335,11 +424,11 @@ public class EmployeeController {
     public void list(HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
         String cacheName = CacheNameHelper.ListAll_CacheName;
-       // String json = cache.get(cacheName);
+        // String json = cache.get(cacheName);
         //if(json==null){
-         String json = Result.build(ResultType.Success).appendData("employee",employeeService.selectAll()).convertIntoJSON();
-          //  cache.set(cacheName,json);
-    //    }
+        String json = Result.build(ResultType.Success).appendData("employee",employeeService.selectAll()).convertIntoJSON();
+        //  cache.set(cacheName,json);
+        //    }
         response.getWriter().write(json);
     }
 
@@ -357,8 +446,8 @@ public class EmployeeController {
         if(classToStudentListModels ==  null) {
             return null;
         }
-            ClassStudentVO classStudentVO = new ClassStudentVO();
-            classStudentVO.setClassToStudentListModels(classToStudentListModels);
+        ClassStudentVO classStudentVO = new ClassStudentVO();
+        classStudentVO.setClassToStudentListModels(classToStudentListModels);
         return classStudentVO;
     }
 
@@ -385,8 +474,15 @@ public class EmployeeController {
         employee.setDisciplineId((long)22); //需要第一学科id
         employee.setDepartmentId((long)15); //缺少接口
         employee.setSubdepartmentId((long)1);   //缺少接口
-
-
         return employee;
+    }
+
+    private TeachClassVO convertTeachClassFromModel(List<TeachClassModel> teachClassModels){
+        if(teachClassModels == null){
+            return null;
+        }
+        TeachClassVO teachClassVO = new TeachClassVO();
+        teachClassVO.setTeachClassModels(teachClassModels);
+        return teachClassVO;
     }
 }

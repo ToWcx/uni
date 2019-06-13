@@ -28,4 +28,6 @@ public interface DepartmentClassMapper {
     int updateByPrimaryKeySelective(DepartmentClass record);
 
     int updateByPrimaryKey(DepartmentClass record);
+
+    List<DepartmentClass> selectByDepartmentId(Long id);
 }

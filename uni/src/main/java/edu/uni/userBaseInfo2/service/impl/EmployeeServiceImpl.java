@@ -1,15 +1,20 @@
 package edu.uni.userBaseInfo2.service.impl;
 
 import edu.uni.administrativestructure.bean.Class;
+import edu.uni.administrativestructure.bean.Classmate;
+import edu.uni.administrativestructure.bean.ClassmatePosition;
+import edu.uni.administrativestructure.bean.DepartmentClass;
+import edu.uni.administrativestructure.mapper.ClassMapper;
+import edu.uni.administrativestructure.mapper.ClassmateMapper;
+import edu.uni.administrativestructure.mapper.ClassmatePositionMapper;
+import edu.uni.administrativestructure.mapper.DepartmentClassMapper;
 import edu.uni.administrativestructure.service.ClassService;
 import edu.uni.educateAffair.VO.CurriculumVO;
 import edu.uni.educateAffair.VO.CurriculumWithCondition;
 import edu.uni.educateAffair.bean.Curriculum;
 import edu.uni.educateAffair.mapper.CurriculumMapper;
 import edu.uni.educateAffair.service.CurriculumService;
-import edu.uni.userBaseInfo2.bean.Employee;
-import edu.uni.userBaseInfo2.bean.Student;
-import edu.uni.userBaseInfo2.bean.User;
+import edu.uni.userBaseInfo2.bean.*;
 import edu.uni.userBaseInfo2.mapper.*;
 import edu.uni.userBaseInfo2.service.*;
 import edu.uni.userBaseInfo2.service.model.*;
@@ -52,6 +57,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EcommService ecommService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private ClassmatePositionMapper classmatePositionMapper;
+    @Autowired
+    private ClassmateMapper classmateMapper;
+    @Autowired
+    private ClassMapper classMapper;
+    @Autowired
+    private DepartmentClassMapper departmentClassMapper;
     @Autowired
     private LearningDegreeService learningDegreeService;
 
@@ -128,16 +141,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
-    /**
-     * 通过教师id查询班级id,再通过班级id查询(包含历史)
-     * @param id
-     * @return
-     */
-    @Override
-    public List<ClassToStudentModel> selectdelete1ClassStudent(long id) {
 
-        return null;
-    }
+
 
     /**
      * 查询本学院的所有学生的所有信息
@@ -187,76 +192,254 @@ public class EmployeeServiceImpl implements EmployeeService {
         return departmentToStudentListModels;
     }
 
+    /**
+     * 查看所授课的班级
+     * @param id
+     * @return
+     */
+    @Override
+    public List<TeachClassModel> selectTeachClass(long id) {
+        //根据userid获取department_id
+        Long departmentId = employeeMapper.selectByUserId(id).getDepartmentId();
+        System.out.println("departmentId---"+departmentId);
 
-    public void selectClassStudent(Long id){
+        //根据department_id获取class_id
+        List<Class> classes = classService.selectPageByDepartment(departmentId);
+        System.out.println("000classes"+classes);
 
+        List<TeachClassModel> teachClassModels = new ArrayList<>();
+        System.out.println("classsize---"+classes.size());
+        for(int i=0;i<classes.size();i++){
+            TeachClassModel teachClassModel = new TeachClassModel();
+            List<TeachClassModel> teachClassModels1 = new ArrayList<>();
+            //根据班级id找到同班所有同学userId
+            List<Student> ids = studentMapper.selectIdsByClass(classes.get(i).getId());
+            Long classId = classes.get(i).getId();
+            String className = classes.get(i).getName();
+            int menbernunmber = ids.size();
+            Long headteacherId = classes.get(i).getHeadteacher();
+            //通过emplpyee_id 找到UserName
+            Employee employee = employeeMapper.selectById(headteacherId);
+            System.out.println("employee----"+employee.getUserId());
+            User teacher =userMapper.selectUserNameByUserId(employee.getUserId());
+            String headteacher = teacher.getUserName();
+            System.out.println("headteacher----"+headteacher);
+           // String position =
+            //通过classmate_position = 25找到classmate_id
+            List<ClassmatePosition> classmatePositions = classmatePositionMapper.selectClassmateIdByPositionId((long)25);
+            System.out.println("test1");
+            List<Classmate> classmates = new ArrayList<>();
+            Student students = new Student();
+            //班长的名字
+            String position  = null;
+            //通过classmate_id获取student_id
+
+            teachClassModel.setClassId(classId);
+            teachClassModel.setClassCode(classes.get(i).getCode());
+            teachClassModel.setClassName(className);
+            teachClassModel.setMenbernunmber(menbernunmber);
+            teachClassModel.setHeadteacher(headteacher);
+            System.out.println("test2");
+            long banz = classmateMapper.selectBanz();
+           // System.out.println("test2");
+            System.out.println(banz);
+            Student student = studentMapper.selectByPrimaryKey(banz);
+            User user = userMapper.selectUserNameByUserId(student.getUserId());
+            teachClassModel.setPosition(user.getUserName());
+            teachClassModels.add(teachClassModel);
+//            for(int j=0;j<classmatePositions.size();j++){
+//                classmates = classmateMapper.selectStudentIdByClassmateId(classmatePositions.get(j).getClassmateId());
+//                students = studentMapper.selectByPrimaryKey(classmates.get(j).getId());
+//                position = userMapper.selectUserNameByUserId(students.getUserId());
+//
+//            }
+        }
+        return teachClassModels;
     }
 
     /**
+     * 查看班主任所带班级的学生
+     * 根据教师id查找该教师所带班级
+     * @param id
+     * @return
+     */
+    @Override
+    public List<TeachClassModel> selectClassStuForHeadteacher(long id) {
+        //根据userid查找到employeeid
+        Long employeeId = employeeMapper.selectByUserId(id).getId();
+        System.out.println("employeeId----"+employeeId);
+        //查找该教师所带班级
+        List<Class> classes = classMapper.selectByheadteacher(employeeId);
+        if(classes!=null){
+            List<TeachClassModel> teachClassModels = new ArrayList<>();
+            System.out.println("classsize---"+classes.size());
+            for(int i=0;i<classes.size();i++){
+                TeachClassModel teachClassModel = new TeachClassModel();
+                List<TeachClassModel> teachClassModels1 = new ArrayList<>();
+                //根据班级id找到同班所有同学userId
+                List<Student> ids = studentMapper.selectIdsByClass(classes.get(i).getId());
+                Long classId = classes.get(i).getId();
+                String className = classes.get(i).getName();
+                int menbernunmber = ids.size();
+                Long headteacherId = classes.get(i).getHeadteacher();
+                //通过emplpyee_id 找到UserName
+                Employee employee = employeeMapper.selectById(headteacherId);
+                System.out.println("employee----"+employee.getUserId());
+                User teacher =userMapper.selectUserNameByUserId(employee.getUserId());
+                String headteacher = teacher.getUserName();
+                System.out.println("headteacher----"+headteacher);
+                // String position =
+                //通过classmate_position = 25找到classmate_id
+                List<ClassmatePosition> classmatePositions = classmatePositionMapper.selectClassmateIdByPositionId((long)25);
+                System.out.println("test1");
+                List<Classmate> classmates = new ArrayList<>();
+                Student students = new Student();
+                //班长的名字
+                String position  = null;
+                //通过classmate_id获取student_id
+                teachClassModel.setClassId(classId);
+                teachClassModel.setClassName(className);
+                teachClassModel.setMenbernunmber(menbernunmber);
+                teachClassModel.setHeadteacher(headteacher);
+                System.out.println("test2");
+                long banz = classmateMapper.selectBanz();
+                // System.out.println("test2");
+                System.out.println(banz);
+                Student student = studentMapper.selectByPrimaryKey(banz);
+                User user = userMapper.selectUserNameByUserId(student.getUserId());
+                teachClassModel.setPosition(user.getUserName());
+                teachClassModels.add(teachClassModel);
+//            for(int j=0;j<classmatePositions.size();j++){
+//                classmates = classmateMapper.selectStudentIdByClassmateId(classmatePositions.get(j).getClassmateId());
+//                students = studentMapper.selectByPrimaryKey(classmates.get(j).getId());
+//                position = userMapper.selectUserNameByUserId(students.getUserId());
+//
+//            }
+            }
+            return teachClassModels;
+        }
+        return null;
+    }
+    /**
+     * 按照userid查看所处学院的所有班级信息
+     * @param id
+     * @return
+     */
+    @Override
+    public List<TeachClassModel> selectDepartment(long id) {
+        //根据userid获取department_id
+        Long departmentId = employeeMapper.selectByUserId(id).getDepartmentId();
+        System.out.println("departmentId---"+departmentId);
+
+        //根据department_id获取class_id
+        List<DepartmentClass> departmentClasses = departmentClassMapper.selectByDepartmentId(departmentId);
+        System.out.println("000classes"+departmentClasses);
+        List<TeachClassModel> teachClassModels = new ArrayList<>();
+        System.out.println("classsize---"+departmentClasses.size());
+        for(int i=0;i<departmentClasses.size();i++){
+            Class classes = classMapper.selectByPrimaryKey(departmentClasses.get(i).getClassId());
+            TeachClassModel teachClassModel = new TeachClassModel();
+            List<TeachClassModel> teachClassModels1 = new ArrayList<>();
+            //根据班级id找到同班所有同学userId
+            List<Student> ids = studentMapper.selectIdsByClass(classes.getId());
+            Long classId = classes.getId();
+            String className = classes.getName();
+            int menbernunmber = ids.size();
+            Long headteacherId = classes.getHeadteacher();
+            //通过emplpyee_id 找到UserName
+            Employee employee = employeeMapper.selectById(headteacherId);
+            System.out.println("employee----"+employee.getUserId());
+            User teacher =userMapper.selectUserNameByUserId(employee.getUserId());
+            String headteacher = teacher.getUserName();
+            System.out.println("headteacher----"+headteacher);
+            // String position =
+            //通过classmate_position = 25找到classmate_id
+            List<ClassmatePosition> classmatePositions = classmatePositionMapper.selectClassmateIdByPositionId((long)25);
+            System.out.println("test1");
+            List<Classmate> classmates = new ArrayList<>();
+            Student students = new Student();
+            //班长的名字
+            String position  = null;
+            //通过classmate_id获取student_id
+
+            teachClassModel.setClassId(classId);
+            teachClassModel.setClassCode(classes.getCode());
+            teachClassModel.setClassName(className);
+            teachClassModel.setMenbernunmber(menbernunmber);
+            teachClassModel.setHeadteacher(headteacher);
+            System.out.println("test2");
+            long banz = classmateMapper.selectBanz();
+            // System.out.println("test2");
+            System.out.println(banz);
+            Student student = studentMapper.selectByPrimaryKey(banz);
+            User user = userMapper.selectUserNameByUserId(student.getUserId());
+            teachClassModel.setPosition(user.getUserName());
+            teachClassModels.add(teachClassModel);
+//            for(int j=0;j<classmatePositions.size();j++){
+//                classmates = classmateMapper.selectStudentIdByClassmateId(classmatePositions.get(j).getClassmateId());
+//                students = studentMapper.selectByPrimaryKey(classmates.get(j).getId());
+//                position = userMapper.selectUserNameByUserId(students.getUserId());
+//
+//            }
+        }
+        return teachClassModels;
+    }
+
+
+    /**
      * 查看所授课班级学生信息(不包含历史)
+     * 根据class——id
+     * 能看到这个学生的学号，姓名，通信方式和照片
      * @param id
      * @return
      */
     @Override
     public List<ClassToStudentListModel> selectdelete0ClassStudent(long id) {
-        //根据userId查询教师id
-        Long employeeId1 = employeeMapper.selectByUserIdAndDelete(id).getId();
-        System.out.println("employeeId1-----"+employeeId1);
-//        CurriculumWithCondition curriculumWithCondition = new CurriculumWithCondition();
-//        curriculumWithCondition.setEmployeeId(id);
-//        curriculumWithCondition.setClass(true);
-//        System.out.println(curriculumWithCondition);
-        List<ClassToStudentListModel> classToStudentListModels = new ArrayList<>();
-        List<Long> semesterId =null ;
-        List<Long> employeeId =new ArrayList<>();
-        employeeId.add(employeeId1);
-        List<Long> courseId =null ;
-        List<Long> classId =null;
-        //根据教师id查询班级id
-        List<Curriculum> curriculumList = curriculumService.selectCurriculumByCondition(semesterId,employeeId,courseId,classId);
-
-        System.out.println("size---"+curriculumList.size());
-        for (int i = 0; i < curriculumList.size(); i++) {	//循环每个班级
-			//存的是班级的学生
+         List<ClassToStudentListModel> classToStudentListModels = new ArrayList<>();
+            //存的是班级的学生
             ClassToStudentListModel classToStudentListModel  = new ClassToStudentListModel();	//代表一个授课班级的学生
 			//↓添加修改
 			List<ClassToStudentModel> classToStudentModels = new ArrayList<>();	//代表一个授课班级的学生
 			//↑添加修改
-            //根据班级id 找到授课所有学生姓名
-            System.out.println("classid---"+curriculumList.get(i).getClassId());
-            List<Student> stuNos = studentMapper.selectStuNosByClass(curriculumList.get(i).getClassId());
-            System.out.println("stuNos---"+stuNos);
+            //根据班级id 找到授课所有学生
+            System.out.println("classid---"+id);
+            List<Student> stu = studentMapper.selectStuByClass(id);
+            System.out.println("stuNos---"+stu);
             //根据班级id找到同班所有同学userId
-            List<Student> ids = studentMapper.selectIdsByClass(curriculumList.get(i).getClassId());
-            System.out.println(ids);
+            List<Student> ids = studentMapper.selectIdsByClass(id);
+            System.out.println("ids---"+ids);
             //同班同学的姓名
             List<User> userNames = userMapper.selectUserNamesByIds(ids);
-            System.out.println(userNames);
-            for (int j = 0; j < stuNos.size(); j++) {	//循环每个班级的每个学生
+            System.out.println("userNames---"+userNames);
+            for (int j = 0; j < stu.size(); j++) {	//循环每个班级的每个学生
                 ClassToStudentModel classToStudentModel = new ClassToStudentModel();	//代表一个学生
                 classToStudentModel.setUserName(userNames.get(j).getUserName());
-                classToStudentModel.setEcommModels(ecommService.selectAll(ids.get(j).getUserId()));
+                classToStudentModel.setUserId(stu.get(j).getUserId());
+                User user = userMapper.selectByPrimaryKey(stu.get(j).getUserId());
+                classToStudentModel.setPiliticalId(stu.get(j).getPoliticalId());
+                SecondLevelDiscipline secondLevelDiscipline = secondLevelDisciplineMapper.selectByPrimaryKey(stu.get(j).getSpecialtyId());
+                classToStudentModel.setMajor(secondLevelDiscipline.getCategoryId());
+                classToStudentModel.setMajorId(stu.get(j).getSpecialtyId());
+                classToStudentModel.setGrade(stu.get(j).getGrade());
+                classToStudentModel.setBegin_learn_date(stu.get(j).getBeginLearnDate());
+                int sex = user.getUserSex();
+                if(sex==2){
+                    classToStudentModel.setSex("女");
+                }else{
+                    classToStudentModel.setSex("男");
+                }
+                Ecomm ecomm = ecommMapper.selectByPrimaryKey(stu.get(j).getPhoneEcommId());
+                classToStudentModel.setContent(ecomm.getContent());
+                PoliticalAffiliation politicalAffiliation = politicalAffiliationMapper.selectByPrimaryKey(stu.get(j).getPoliticalId());
+                classToStudentModel.setPolitical(politicalAffiliation.getPolitical());
                 // classToStudentModel.setPictureModel();
-                classToStudentModel.setStuNo(stuNos.get(j).getStuNo());
+                classToStudentModel.setStuNo(stu.get(j).getStuNo());
                 //classToStudentListModel.add(classToStudentModel);
 				classToStudentModels.add(classToStudentModel);
             }
             classToStudentListModel.setClassToStudentModels(classToStudentModels);
 			classToStudentListModels.add(classToStudentListModel);
-        }
         return classToStudentListModels;
-    }
-    /**
-     * 查询本学院的所有学生的所有信息
-     * 根据user_id查询学院id,再通过学院id显示学生信息(有效)
-     * @param id
-     * @return
-     */
-    @Override
-    public List<DepartmentToStudentListModel> selectdelete0DepartStudent(long id) {
-       // Long classId = studentMapper.selectByUserId(id).getClassId();
-
-        return null;
     }
 
 

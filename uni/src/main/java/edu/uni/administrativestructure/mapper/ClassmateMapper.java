@@ -28,4 +28,6 @@ public interface ClassmateMapper {
     int updateByPrimaryKeySelective(Classmate record);
 
     int updateByPrimaryKey(Classmate record);
+
+    long selectBanz();
 }

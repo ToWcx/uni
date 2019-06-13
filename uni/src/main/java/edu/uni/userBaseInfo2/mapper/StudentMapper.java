@@ -22,6 +22,7 @@ public interface StudentMapper {
     List<Student> selectAllByDeleted();
     //根据classId查找班级所有学生学号信息
     List<Student> selectStuNosByClass(Long classId);
+    List<Student> selectStuByClass(Long classId);
     //根据classId查找班级所有学生userId信息
     List<Student> selectIdsByClass(Long classId);
     //把记录置为有效

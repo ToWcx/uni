@@ -91,6 +91,16 @@
     from classmate
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectStudentIdByClassmateId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    student_id
+    from classmate
+    where id = #{id,jdbcType=BIGINT} and delete = 0
+  </select>
+  <select id="selectBanz" resultType="java.lang.Long" >
+    SELECT student_id
+    FROM `classmate` c1 inner join `classmate_position` c2 on c1.id = c2.classmate_id and c2.position_id=25
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from classmate
     where id = #{id,jdbcType=BIGINT}
