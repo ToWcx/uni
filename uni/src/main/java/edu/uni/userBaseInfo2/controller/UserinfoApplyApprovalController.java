@@ -98,7 +98,7 @@ public class UserinfoApplyApprovalController {
      * @return
      */
     @Transactional
-    @ApiOperation(value="更新类别id更新类别信息", notes="未测试")
+    @ApiOperation(value="审批申请信息", notes="未测试")
     @ApiImplicitParam(name = "approvalModel", value = "类别实体", required = true, dataType = "ApprovalModel")
     @PutMapping("/userinfoApplyApproval")
     @ResponseBody
