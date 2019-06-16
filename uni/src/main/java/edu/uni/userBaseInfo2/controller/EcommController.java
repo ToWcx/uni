@@ -134,6 +134,8 @@ public class EcommController {
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生申请修改通讯");
                 } else if(ecommAU.getType() == 2){
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"职员申请修改通讯");
+                } else if(ecommAU.getType() == 4){
+                    approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生亲属申请修改通讯");
                 }
                 long AMId = approvalMain.getId();
                 if(approvalMain == null){

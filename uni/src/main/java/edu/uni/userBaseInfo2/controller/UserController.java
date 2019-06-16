@@ -60,27 +60,27 @@ public class UserController {
     }
 
 
-    /**
-     * 删除类别
-     * @param
-     * @return
-     */
-    //   @ApiOperation(value="删除类别", notes="未测试")
-    //  @ApiImplicitParam(name = "id", value = "类别id", required = true, dataType = "Long", paramType = "path")
-    // @DeleteMapping("/delete/{id}")
-    //@ResponseBody
-  /*  public Result destroy(@PathVariable Long id){
-        boolean success = userService.delete(id);
-        if(success){
-            // 清空相关缓存
-            cache.delete(CacheNameHelper.ListAll_CacheName);
-            return Result.build(ResultType.Success);
-        }else{
-            return Result.build(ResultType.Failed);
-        }
-    }*/
+//    /**
+//     * 删除类别
+//     * @param
+//     * @return
+//     */
+//       @ApiOperation(value="删除类别", notes="未测试")
+//      @ApiImplicitParam(name = "id", value = "类别id", required = true, dataType = "Long", paramType = "path")
+//     @DeleteMapping("/delete/{id}")
+//    @ResponseBody
+//    public Result destroy(@PathVariable Long id){
+//        boolean success = userService.delete(id);
+//        if(success){
+//            // 清空相关缓存
+//            cache.delete(CacheNameHelper.ListAll_CacheName);
+//            return Result.build(ResultType.Success);
+//        }else{
+//            return Result.build(ResultType.Failed);
+//        }
+//    }
 
-    @ApiOperation(value="更新类别id更新类别信息", notes="未测试")
+    @ApiOperation(value="游客修改个人信息", notes="未测试")
     @ApiImplicitParam(name = "user", value = "类别实体", required = true, dataType = "User")
     @PutMapping("/update")
     @ResponseBody

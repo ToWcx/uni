@@ -10,6 +10,7 @@ import java.util.Date;
  * @Version 1.0
  */
 public class UserModel {
+    private Long id;
 
     private String userName;
 
@@ -28,6 +29,13 @@ public class UserModel {
 
     private Integer status;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;
@@ -96,13 +104,14 @@ public class UserModel {
     @Override
     public String toString() {
         return "UserModel{" +
+                "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", identification='" + identification + '\'' +
-                ", userSex=" + userSex +
-                ", userBirthday='" + userBirthday + '\'' +
+                ", userSex='" + userSex + '\'' +
+                ", userBirthday=" + userBirthday +
                 ", name='" + name + '\'' +
                 ", university='" + university + '\'' +
-                ", userType=" + userType +
+                ", userType='" + userType + '\'' +
                 ", status=" + status +
                 '}';
     }

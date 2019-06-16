@@ -102,4 +102,11 @@ public interface StudentService {
      * @return
      */
     List<ClassMateModel> selectByClassId(long id);
+
+    /**
+     * 根据userId查找用户班级id
+     * @param id
+     * @return
+     */
+    long selectClassByUserId(long id);
 }

@@ -1,5 +1,7 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.administrativestructure.bean.Class;
+import edu.uni.administrativestructure.service.ClassService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -10,6 +12,7 @@ import edu.uni.userBaseInfo2.controller.approvalUtil.StudentAU;
 import edu.uni.userBaseInfo2.controller.viewObject.*;
 import edu.uni.userBaseInfo2.service.*;
 import edu.uni.userBaseInfo2.service.model.ClassMateModel;
+import edu.uni.userBaseInfo2.service.model.EcommModel;
 import edu.uni.userBaseInfo2.service.model.StudentModel;
 import edu.uni.utils.RedisCache;
 import io.swagger.annotations.Api;
@@ -53,6 +56,10 @@ public class StudentController {
     private SecondLevelDisciplineService secondLevelDisciplineService;
     @Autowired
     private PoliticalAffiliationService politicalAffiliationService;
+    @Autowired
+    private ClassService classService;
+    @Autowired
+    private EmployeeService employeeService;
 
     /**
      * 内部类，专门用来管理每个get方法所对应缓存的名称。
@@ -342,6 +349,39 @@ public class StudentController {
         System.out.println(stuByClassVO);
         stuByClassVO.setClassId(id);
         String json = Result.build(ResultType.Success).appendData("stuentByClassId", stuByClassVO ).convertIntoJSON();
+//            cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
+     * 根据userId获取班主任部分信息(姓名、科室、电子通讯)
+     * @param id
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="根据userId获取班主任部分信息(姓名、科室、电子通讯)", notes="未测试")
+    @ApiImplicitParam(name = "id", value = "userId", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/students/receiveHeadmaster/{id}")
+    public void receiveHeadmaster(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        long classId = studentService.selectClassByUserId(id);
+        Class aClass = classService.select(classId);
+        long tId = aClass.getHeadteacher();
+        long uId = employeeService.selectById(tId).getUserId();
+        String tName = userService.select(uId).getUserName();
+        List<EcommModel> ecommModels = ecommService.selectAll(uId);
+        HeadMasterVO headMasterVO = new HeadMasterVO();
+        headMasterVO.setName(tName);
+        headMasterVO.setSubdepartment("暂不写接口");
+        headMasterVO.setEcommModels(ecommModels);
+
+
+        String json = Result.build(ResultType.Success).appendData("headMaster", headMasterVO ).convertIntoJSON();
 //            cache.set(cacheName, json);
 //        }
         response.getWriter().write(json);

@@ -162,8 +162,9 @@ public class AddressController {
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生申请修改地址");
                 }else if(addressAU.getType() == 2){
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"职员申请修改地址");
+                }else if(addressAU.getType() == 4){
+                    approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生亲属申请修改地址");
                 }
-
                 long AMId = approvalMain.getId();
                 if(approvalMain == null){
                     System.out.println("approvalMain为空 查询不到该审批步数规定表");

@@ -182,6 +182,11 @@ public class StudentServiceImpl implements StudentService {
         return classMateModels;
     }
 
+    @Override
+    public long selectClassByUserId(long id) {
+        return studentMapper.selectClassByUserId(id);
+    }
+
 //    @Override
 //    public void selectUserRelation(long id) {
 //        //根据student_id(即user_id) 查找亲属信息

@@ -25,6 +25,8 @@ public interface StudentMapper {
     List<Student> selectStuByClass(Long classId);
     //根据classId查找班级所有学生userId信息
     List<Student> selectIdsByClass(Long classId);
+    //根据userId查找班级id
+    Long selectClassByUserId(Long id);
     //把记录置为有效
     int updateTrueById(Long id);
     //逻辑删除旧记录
