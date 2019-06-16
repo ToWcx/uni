@@ -6,7 +6,17 @@ import edu.uni.userBaseInfo2.service.model.StudentRelationModel;
 import java.util.List;
 
 public class StudentRelationVO {
+    private Long userId;
+
     private List<StudentRelationModel> studentRelationModels;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public List<StudentRelationModel> getStudentRelationModels() {
         return studentRelationModels;

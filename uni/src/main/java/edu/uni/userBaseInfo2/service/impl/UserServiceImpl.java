@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
             usermodel.setUserSex("女");
         } else if(user.getUserSex() == 1){
             usermodel.setUserSex("男");
-        } else if(user.getUserSex() == 2){
+        } else{
             usermodel.setUserSex("不详");
         }
         if(user.getUserType() == 0){
@@ -92,6 +92,8 @@ public class UserServiceImpl implements UserService {
             usermodel.setUserType("系统运营者");
         } else if(user.getUserType() == 6){
             usermodel.setUserType("学校信息主管");
+        } else {
+            usermodel.setUserType("不详");
         }
         return usermodel;
     }

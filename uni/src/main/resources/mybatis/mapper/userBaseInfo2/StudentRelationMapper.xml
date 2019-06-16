@@ -15,10 +15,16 @@
     id, user_id, rela_name, rela_id, relationship, datetime, by_who, deleted
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from student_relation
     where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByRelation" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from student_relation
+    where user_id = #{userId,jdbcType=BIGINT} and relationship = #{relationship,jdbcType=INTEGER}
   </select>
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
@@ -34,12 +40,12 @@
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into student_relation (user_id, rela_name, rela_id, 
-      relationship, datetime, by_who, 
-      deleted)
-    values (#{userId,jdbcType=BIGINT}, #{relaName,jdbcType=CHAR}, #{relaId,jdbcType=BIGINT}, 
-      #{relationship,jdbcType=INTEGER}, #{datetime,jdbcType=TIMESTAMP}, #{byWho,jdbcType=BIGINT}, 
-      #{deleted,jdbcType=BIT})
+    insert into student_relation (user_id, rela_name, rela_id,
+    relationship, datetime, by_who,
+    deleted)
+    values (#{userId,jdbcType=BIGINT}, #{relaName,jdbcType=CHAR}, #{relaId,jdbcType=BIGINT},
+    #{relationship,jdbcType=INTEGER}, #{datetime,jdbcType=TIMESTAMP}, #{byWho,jdbcType=BIGINT},
+    #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="edu.uni.userBaseInfo2.bean.StudentRelation" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >

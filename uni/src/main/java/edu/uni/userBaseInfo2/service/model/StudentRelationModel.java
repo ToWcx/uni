@@ -13,11 +13,12 @@ public class StudentRelationModel {
 
     private String relationship;
 
-    private String relaIdentification;
+    private String identification;;
 
-    private String relaSex;
+    private String userSex;
 
-    private String relaBirthday;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date userBirthday;
 
     public Long getId() {
         return id;
@@ -34,13 +35,28 @@ public class StudentRelationModel {
     public void setRelaName(String relaName) {
         this.relaName = relaName;
     }
-
     public Long getRelaId() {
         return relaId;
     }
 
     public void setRelaId(Long relaId) {
         this.relaId = relaId;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public String getUserSex() {
+        return userSex;
+    }
+
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
     }
 
     public String getRelationship() {
@@ -51,40 +67,23 @@ public class StudentRelationModel {
         this.relationship = relationship;
     }
 
-    public String getRelaIdentification() {
-        return relaIdentification;
+    public Date getUserBirthday() {
+        return userBirthday;
     }
 
-    public void setRelaIdentification(String relaIdentification) {
-        this.relaIdentification = relaIdentification;
-    }
-
-    public String getRelaSex() {
-        return relaSex;
-    }
-
-    public void setRelaSex(String relaSex) {
-        this.relaSex = relaSex;
-    }
-
-    public String getRelaBirthday() {
-        return relaBirthday;
-    }
-
-    public void setRelaBirthday(String relaBirthday) {
-        this.relaBirthday = relaBirthday;
+    public void setUserBirthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
     }
 
     @Override
     public String toString() {
         return "StudentRelationModel{" +
-                "id=" + id +
                 "relaName='" + relaName + '\'' +
                 ", relaId=" + relaId +
                 ", relationship='" + relationship + '\'' +
-                ", relaIdentification='" + relaIdentification + '\'' +
-                ", relaSex='" + relaSex + '\'' +
-                ", relaBirthday='" + relaBirthday + '\'' +
+                ", rela_Identification='" + identification + '\'' +
+                ", rela_Sex='" + userSex + '\'' +
+                ", rel_aBirthday='" + userBirthday + '\'' +
                 '}';
     }
 }
