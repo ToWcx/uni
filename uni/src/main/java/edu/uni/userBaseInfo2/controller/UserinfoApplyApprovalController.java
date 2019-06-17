@@ -118,6 +118,12 @@ public class UserinfoApplyApprovalController {
     @ResponseBody
     public Result update(@RequestBody(required = false) ApprovalModel approvalModel){
 //        if(approvalModel != null && ecomm.getId() != null){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed, "你沒有登錄");
+        }
+        long userId = user.getId();
+        approvalModel.setCheckWho(userId);
         if(approvalModel != null){
             long uAAId = approvalModel.getUserinfoApplyApprovalId();    //审批流程表id
             UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
