@@ -247,8 +247,10 @@ public class EmployeeController {
 //        String json = cache.get(cacheName);
 //        if(json == null){
         List<ClassToStudentListModel> classToStudentListModels = employeeService.selectdelete0ClassStudent(id);
-        ClassStudentVO classStudentVO =convertClasstoStudentFromModel(classToStudentListModels);
-        classStudentVO.setUserId(id);
+        ClassStudentVO classStudentVO = convertClasstoStudentFromModel(classToStudentListModels);
+        if(classStudentVO != null){
+            classStudentVO.setUserId(id);
+        }
         String json = Result.build(ResultType.Success).appendData("classStudent",classStudentVO).convertIntoJSON();
         //  cache.set(cacheName, json);
 //        }

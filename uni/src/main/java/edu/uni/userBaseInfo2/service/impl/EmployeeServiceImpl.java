@@ -168,6 +168,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             //根据班级id 找到授课所有学生姓名
             List<Student> stuNos = studentMapper.selectStuNosByClass(classId);
             System.out.println("stuNos---"+stuNos);
+            if(stuNos.size() == 0){
+                continue;
+            }
             //根据班级id找到同班所有同学userId
             List<Student> ids = studentMapper.selectIdsByClass(classId);
             System.out.println("ids---"+ids);
@@ -406,6 +409,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             List<Student> stu = studentMapper.selectStuByClass(id);
             System.out.println("stuNos---"+stu);
             //根据班级id找到同班所有同学userId
+        if(stu.size() == 0){
+            return null;
+        }
             List<Student> ids = studentMapper.selectIdsByClass(id);
             System.out.println("ids---"+ids);
             //同班同学的姓名
