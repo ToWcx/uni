@@ -5,6 +5,11 @@ import java.net.UnknownHostException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 常用IP工具类
+ * @Author 何亮
+ * @date 2019/4/3
+ */
 public class IpUtils {
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
@@ -31,7 +36,7 @@ public class IpUtils {
             }
             // 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
             if (ipAddress != null && ipAddress.length() > 15) { // "***.***.***.***".length()
-                                                                // = 15
+                // = 15
                 if (ipAddress.indexOf(",") > 0) {
                     ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
                 }
