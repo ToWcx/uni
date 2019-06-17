@@ -424,7 +424,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 User user = userMapper.selectByPrimaryKey(stu.get(j).getUserId());
                 classToStudentModel.setPiliticalId(stu.get(j).getPoliticalId());
                 SecondLevelDiscipline secondLevelDiscipline = secondLevelDisciplineMapper.selectByPrimaryKey(stu.get(j).getSpecialtyId());
-                classToStudentModel.setMajor(secondLevelDiscipline.getCategoryId());
+                classToStudentModel.setMajor(secondLevelDiscipline.getName());
                 classToStudentModel.setMajorId(stu.get(j).getSpecialtyId());
                 classToStudentModel.setGrade(stu.get(j).getGrade());
                 classToStudentModel.setBegin_learn_date(stu.get(j).getBeginLearnDate());
@@ -454,7 +454,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if(employee!=null){
             //BeanUtils.copyProperties(employee,employeeModel);
             //根据discipline.id找到category_id的值
-            String major = secondLevelDisciplineMapper.selectByPrimaryKey(employee.getDisciplineId()).getCategoryId();
+            String major = secondLevelDisciplineMapper.selectByPrimaryKey(employee.getDisciplineId()).getName();
             String political = politicalAffiliationMapper.selectByPrimaryKey(employee.getPoliticalId()).getPolitical();
             employeeModel.setId(employee.getId());
             employeeModel.setEmpNo(employee.getEmpNo());

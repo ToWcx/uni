@@ -7,14 +7,20 @@ import java.util.Date;
 public class FirstLevelDiscipline {
     private Long id;
 
-    private Long categoryId;
+    private Long disciplineCategoryId;
 
-    private String discipline;
+    private String code;
 
-    private Long byWho;
+    private String name;
+
+    private String ename;
+
+    private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date datetime;
+
+    private Long byWho;
 
     private Boolean deleted;
 
@@ -26,28 +32,44 @@ public class FirstLevelDiscipline {
         this.id = id;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getDisciplineCategoryId() {
+        return disciplineCategoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setDisciplineCategoryId(Long disciplineCategoryId) {
+        this.disciplineCategoryId = disciplineCategoryId;
     }
 
-    public String getDiscipline() {
-        return discipline;
+    public String getCode() {
+        return code;
     }
 
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline == null ? null : discipline.trim();
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
     }
 
-    public Long getByWho() {
-        return byWho;
+    public String getName() {
+        return name;
     }
 
-    public void setByWho(Long byWho) {
-        this.byWho = byWho;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename == null ? null : ename.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getDatetime() {
@@ -56,6 +78,14 @@ public class FirstLevelDiscipline {
 
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
+    }
+
+    public Long getByWho() {
+        return byWho;
+    }
+
+    public void setByWho(Long byWho) {
+        this.byWho = byWho;
     }
 
     public Boolean getDeleted() {

@@ -91,7 +91,7 @@ public class StudentServiceImpl implements StudentService {
         List<StudentModel> studentModels = new ArrayList<>();
         for(int i=0;i<students.size();i++){
             StudentModel studentModel = new StudentModel();
-            studentModel.setMajor(secondLevelDisciplineMapper.selectByPrimaryKey(students.get(i).getSpecialtyId()).getCategoryId());
+            studentModel.setMajor(secondLevelDisciplineMapper.selectByPrimaryKey(students.get(i).getSpecialtyId()).getName());
             studentModel.setPolitical(politicalAffiliationMapper.selectByPrimaryKey(students.get(i).getPoliticalId()).getPolitical());
             String liveRoom = "学生宿舍紫薇苑1栋101";
             studentModel.setLiveRoom(liveRoom);
@@ -130,7 +130,7 @@ public class StudentServiceImpl implements StudentService {
             BeanUtils.copyProperties(students,studentModels);
             for(int i=0; i<students.size(); i++){
                 StudentModel studentModel = new StudentModel();
-                studentModel.setMajor(secondLevelDisciplineMapper.selectByPrimaryKey(students.get(i).getSpecialtyId()).getCategoryId());
+                studentModel.setMajor(secondLevelDisciplineMapper.selectByPrimaryKey(students.get(i).getSpecialtyId()).getName());
                 studentModel.setPolitical(politicalAffiliationMapper.selectByPrimaryKey(students.get(i).getPoliticalId()).getPolitical());
                 String liveRoom = "学生宿舍紫薇苑1栋101";
                 studentModel.setLiveRoom(liveRoom);
@@ -200,7 +200,7 @@ public class StudentServiceImpl implements StudentService {
         if(student != null) {
             BeanUtils.copyProperties(student, studentModel);
             //根据major.id找到major的值
-            String major = secondLevelDisciplineMapper.selectByPrimaryKey(student.getSpecialtyId()).getCategoryId();
+            String major = secondLevelDisciplineMapper.selectByPrimaryKey(student.getSpecialtyId()).getName();
             String political = politicalAffiliationMapper.selectByPrimaryKey(student.getPoliticalId()).getPolitical();
             studentModel.setMajor(major);
             studentModel.setPolitical(political);
