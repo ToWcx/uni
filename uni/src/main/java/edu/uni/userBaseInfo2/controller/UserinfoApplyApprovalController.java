@@ -1,5 +1,10 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.Role;
+import edu.uni.auth.bean.User;
+import edu.uni.auth.bean.UserRole;
+import edu.uni.auth.service.AuthService;
+import edu.uni.auth.service.RoleService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.*;
@@ -54,6 +59,10 @@ public class UserinfoApplyApprovalController {
     @Autowired
     private EmployeeHistoryService employeeHistoryService;
     @Autowired
+    private AuthService authService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
     private RedisCache cache;
 
     /**
@@ -67,22 +76,27 @@ public class UserinfoApplyApprovalController {
     }
 
     /**
-     * 根据userId(找到角色名和学校id)获取审批表
-     * @param id
+     * 获取审批表
      * @param response
      * @throws IOException
      */
-    @ApiOperation(value="根据userId获取审批表", notes="未测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
-    @GetMapping("/userinfoApplyApproval/{id}")
-    public void receiveApply(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    @ApiOperation(value="获取审批表", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/userinfoApplyApproval")
+    public void receiveApply(HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
         String cacheName = StudentController.CacheNameHelper.Receive_CacheNamePrefix + id;
         //测试的时候需注释掉cache缓存
 //        String json = cache.get(cacheName);
 //        if(json == null){
-
-        List<ApprovalModel> approvalModels = approvalService.select(id);
+        long uniId = userService.selectUniIdById(id).getUniversityId();
+        List<Role> roles = roleService.selectByUidAndUniversityId(id, uniId);
+        List<ApprovalModel> approvalModels = approvalService.select(id,roles);
 //        AddressVO addressVO = convertAddressFromModel(addressModel);
 //        addressVO.setUserId(id);
         String json = Result.build(ResultType.Success).appendData("approvalInfo", approvalModels ).convertIntoJSON();
@@ -282,7 +296,9 @@ public class UserinfoApplyApprovalController {
                     long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
                     //获取角色
                     //根据roleId获取roleName
-                    String roleName = roleId+"";
+                    String roleName = roleService.selectRoleNameByRoleId(roleId);
+                    System.out.println("roleName"+roleName);
+//                    String roleName = roleId+"";
                     UserinfoApplyApproval userinfoApplyApproval1 = new UserinfoApplyApproval();
                     userinfoApplyApproval1.setUserinfoApplyId(uIApplyApproval.getUserinfoApplyId());   //申请表id
                     userinfoApplyApproval1.setStep(step);

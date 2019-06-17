@@ -61,5 +61,6 @@ public interface EmployeeService {
     List<TeachClassModel> selectClassStuForHeadteacher(long id);
     //按照userid查看所处学院的所有班级信息
     List<TeachClassModel> selectDepartment(long id);
-
+    //显示所有老师信息
+    List<EmployeeListModel> showEmployeeList(long id);
 }

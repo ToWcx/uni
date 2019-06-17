@@ -1,5 +1,7 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -31,6 +33,8 @@ public class PictureController {
     @Autowired
     private PictureService pictureService;
     @Autowired
+    private AuthService authService;
+    @Autowired
     private RedisCache cache;
 
     //    //获取本机ip
@@ -53,29 +57,42 @@ public class PictureController {
         public static final String Receive_CacheNamePrefix = "ub2_s_picture_";
     }
 
+    /**
+     * 图片上传
+     * @param request
+     * @param response
+     * @param file
+     * @param flag
+     * @return
+     * @throws IOException
+     */
     @ApiOperation(value = "图片上传", notes = "图片上传")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "flag", value = "照片类型,0:证件照，1:生活照", required = true, dataType = "int", paramType = "query"),
-            @ApiImplicitParam(name = "userId", value = "用户id", required = true, dataType = "long", paramType = "query"),
+//            @ApiImplicitParam(name = "userId", value = "用户id", required = true, dataType = "long", paramType = "query"),
     })
     @PostMapping(value="/picture",headers="content-type=multipart/form-data")
     @ResponseBody
     public Result upload(HttpServletRequest request,
                          HttpServletResponse response,
                          @ApiParam(name = "file",value = "照片文件", required = true) MultipartFile file,
-                         int flag,
-                         long userId) throws IOException {
+                         int flag) throws IOException {
         //返回上传的文件是否为空，即没有选择任何文件，或者所选文件没有内容。
         //防止上传空文件导致奔溃
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed, "你沒有登錄");
+        }
+        long userId = user.getId();
         if (file.isEmpty()) {
             return Result.build(ResultType.Failed);
         }
 
 //        获取本机IP
-        host = InetAddress.getLocalHost().getHostAddress();
+//        host = InetAddress.getLocalHost().getHostAddress();
 
         // 获取文件名
-        String fileName = host + file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
         //logger.info("上传的文件名为：" + fileName);
         // 设置文件上传后的路径
         String filePath = rootPath + sonPath;

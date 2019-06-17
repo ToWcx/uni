@@ -1,6 +1,8 @@
 package edu.uni.userBaseInfo2.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
 import edu.uni.bean.ResultType;
 
 import edu.uni.userBaseInfo2.bean.Student;
@@ -37,6 +39,8 @@ public class StudentRelationController {
     private StudentRelationService studentRelationService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthService authService;
     @Autowired
     private RedisCache cache;
 
@@ -121,6 +125,43 @@ public class StudentRelationController {
 //    }
 
     /**
+     * 根据亲属关系relation获取亲属信息
+     * @param relation
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="根据亲属关系relation获取亲属信息", notes="未测试")
+    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "userId", value = "用户id", required = false, dataType = "long", paramType = "query"),
+            @ApiImplicitParam(name = "relation", value = "亲属关系", required = false, dataType = "String", paramType = "query"),
+    })
+    @GetMapping("/StudentRelationByRela")
+    public void RelationStudentRelation(@RequestParam("relation") String relation, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long userId = user.getId();
+
+//        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + userId;
+//         String json = cache.get(cacheName);
+//         if(json = null){
+
+        List<StudentRelationModel> studentRelationModels=studentRelationService.selectRela(userId,relation);
+        for(int i=0;i<studentRelationModels.size();i++){
+            long relaId = studentRelationModels.get(i).getRelaId();
+            UserModel userModel = userService.select(relaId);
+            System.out.println(userModel);
+            BeanUtils.copyProperties(userModel,studentRelationModels.get(i));
+            System.out.println(studentRelationModels.get(i));
+        }
+        String json = Result.build(ResultType.Success).appendData("studentRelation",studentRelationModels).convertIntoJSON();
+//          }
+        response.getWriter().write(json);
+    }
+
+    /**
      * 根据userId和亲属关系relation获取亲属信息
      * @param userId
      * @param relation
@@ -132,7 +173,7 @@ public class StudentRelationController {
             @ApiImplicitParam(name = "userId", value = "用户id", required = false, dataType = "long", paramType = "query"),
             @ApiImplicitParam(name = "relation", value = "亲属关系", required = false, dataType = "String", paramType = "query"),
     })
-    @GetMapping("/StudentRelation")
+    @GetMapping("/StudentRelationByIdAndRela")
     public void RelationStudentRelation(@RequestParam("userId") Long userId,@RequestParam("relation") String relation, HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
 //        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + userId;
@@ -152,11 +193,35 @@ public class StudentRelationController {
         response.getWriter().write(json);
     }
 
+    @ApiOperation(value="查找Relation",notes="未测试")
+//    @ApiImplicitParam(name="userid",value="类别id",required = true,dataType = "Long",paramType = "path")
+    @GetMapping("/StudentRelation")
+    public void receiveStudentRelation (HttpServletResponse response) throws IOException{
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long userid = user.getId();
+        String cacheName = CacheNameHelper.ListAll_CacheName+userid;
+        List<StudentRelationModel> studentRelationModels=studentRelationService.selectUser(userid);
+        for(int i=0;i<studentRelationModels.size();i++){
+            long relaId = studentRelationModels.get(i).getRelaId();
+            UserModel userModel = userService.select(relaId);
+            System.out.println(userModel);
+            BeanUtils.copyProperties(userModel,studentRelationModels.get(i));
+            System.out.println(studentRelationModels.get(i));
+        }
+        StudentRelationVO studentRelationVO=convertStudentRelationModel(studentRelationModels);
+        studentRelationVO.setUserId(userid);
+        String json=Result.build(ResultType.Success).appendData("studentRelation",studentRelationVO).convertIntoJSON();
+        response.getWriter().write(json);
+    }
 
     @ApiOperation(value="通过userid查找Relation",notes="未测试")
     @ApiImplicitParam(name="userid",value="类别id",required = true,dataType = "Long",paramType = "path")
     @GetMapping("/StudentRelation/{userid}")
-    public void useridStudentRelation (@PathVariable Long userid,HttpServletResponse response) throws IOException{
+    public void receiveStudentRelationById (@PathVariable Long userid,HttpServletResponse response) throws IOException{
            response.setContentType("application/json;charset=utf-8");
 
            String cacheName = CacheNameHelper.ListAll_CacheName+userid;

@@ -1,13 +1,8 @@
 package edu.uni.userBaseInfo2.service.impl;
 
+import edu.uni.administrativestructure.bean.*;
 import edu.uni.administrativestructure.bean.Class;
-import edu.uni.administrativestructure.bean.Classmate;
-import edu.uni.administrativestructure.bean.ClassmatePosition;
-import edu.uni.administrativestructure.bean.DepartmentClass;
-import edu.uni.administrativestructure.mapper.ClassMapper;
-import edu.uni.administrativestructure.mapper.ClassmateMapper;
-import edu.uni.administrativestructure.mapper.ClassmatePositionMapper;
-import edu.uni.administrativestructure.mapper.DepartmentClassMapper;
+import edu.uni.administrativestructure.mapper.*;
 import edu.uni.administrativestructure.service.ClassService;
 import edu.uni.educateAffair.VO.CurriculumVO;
 import edu.uni.educateAffair.VO.CurriculumWithCondition;
@@ -67,6 +62,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     private DepartmentClassMapper departmentClassMapper;
     @Autowired
     private LearningDegreeService learningDegreeService;
+    @Autowired
+    private DepartmentMapper departmentMapper;
+    @Autowired
+    private SubdepartmentMapper subdepartmentMapper;
+    @Autowired
+    private UniversityMapper universityMapper;
 
 
 
@@ -304,6 +305,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 teachClassModel.setClassName(className);
                 teachClassModel.setMenbernunmber(menbernunmber);
                 teachClassModel.setHeadteacher(headteacher);
+                teachClassModel.setClassCode(classes.get(i).getCode());
                 System.out.println("test2");
                 long banz = classmateMapper.selectBanz();
                 // System.out.println("test2");
@@ -448,6 +450,45 @@ public class EmployeeServiceImpl implements EmployeeService {
         return classToStudentListModels;
     }
 
+    /**
+     * 显示所有员工列表
+     * @return
+     */
+    @Override
+    public List<EmployeeListModel> showEmployeeList(long id) {
+        //根据教职工user_id查询到该教职工所处学校id
+        Employee employee = employeeMapper.selectByUserId(id);
+        Long universityId = employee.getUniversityId();
+        System.out.println("universityid---"+universityId);
+        //显示该学校所有的教职工
+        List<Employee> employees = employeeMapper.selectByUniversityId(universityId);
+        //System.out.println(employees);
+        List<EmployeeListModel> employeeListModels = new ArrayList<>();
+        for(int i=0;i<employees.size();i++){
+            EmployeeListModel employeeListModel = new EmployeeListModel();
+            employeeListModel.setEmpNo(employees.get(i).getEmpNo());
+            System.out.println(employees.get(i).getUserId());
+            User user = userMapper.selectByPrimaryKey(employees.get(i).getUserId());
+            //System.out.println(user.getUserName());
+            employeeListModel.setUserName(user.getUserName());
+            employeeListModel.setUserId(user.getId());
+            University university = universityMapper.selectByPrimaryKey(employees.get(i).getUniversityId());
+            System.out.println("university"+university.getName());
+            Subdepartment subdepartment  = subdepartmentMapper.selectByPrimaryKey(employees.get(i).getSubdepartmentId());
+            System.out.println("subdepartment"+subdepartment.getName());
+            Department department = departmentMapper.selectByPrimaryKey(employees.get(i).getDepartmentId());
+            System.out.println("department"+department.getName());
+            employeeListModel.setUniversity(university.getName());
+            employeeListModel.setUniversityId(employee.getUniversityId());
+            employeeListModel.setSubdepartment(subdepartment.getName());
+            employeeListModel.setSubdepartmentId(employee.getSubdepartmentId());
+            employeeListModel.setDepartment(department.getName());
+            employeeListModel.setDepartmentId(employee.getDepartmentId());
+            employeeListModels.add(employeeListModel);
+        }
+        return employeeListModels;
+    }
+
 
     private EmployeeModel convertFromBean(Employee employee){
         EmployeeModel employeeModel = new EmployeeModel();
@@ -457,6 +498,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             String major = secondLevelDisciplineMapper.selectByPrimaryKey(employee.getDisciplineId()).getName();
             String political = politicalAffiliationMapper.selectByPrimaryKey(employee.getPoliticalId()).getPolitical();
             employeeModel.setId(employee.getId());
+            employeeModel.setUserId(employee.getUserId());
             employeeModel.setEmpNo(employee.getEmpNo());
             employeeModel.setDepartment(employee.getDepartmentId().toString());
             employeeModel.setSubdepartment(employee.getSubdepartmentId().toString());

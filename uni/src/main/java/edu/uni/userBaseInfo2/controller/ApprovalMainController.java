@@ -1,5 +1,7 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -32,6 +34,8 @@ public class ApprovalMainController {
     @Autowired
     private ApprovalMainService approvalMainService;
     @Autowired
+    private AuthService authService;
+    @Autowired
     private RedisCache cache;
 
     /**
@@ -55,23 +59,28 @@ public class ApprovalMainController {
     @PostMapping("/approvalMain")
     @ResponseBody
     public Result create(@RequestBody(required = false) ApprovalMain approvalMain) {
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed,"你沒有登錄");
+        }
         if (approvalMain != null) {
+            approvalMain.setByWho(user.getId());
             //判断新增步数规定是否已存在
             if (approvalMainService.selectByUniIdAndName(approvalMain.getUniversityId(), approvalMain.getName()) == null) {
                 Date now = new Date();
                 approvalMain.setDatetime(now);
                 approvalMain.setDeleted(false);
 
-            boolean success = approvalMainService.insert(approvalMain);
-            if (success) {
-                // 清空相关缓存
-                System.out.println("新增审批业务成功");
-                cache.delete(CacheNameHelper.ListAll_CacheName);
-                return Result.build(ResultType.Success);
-            } else {
-                System.out.println("新增审批业务失败");
-                return Result.build(ResultType.Failed);
-            }
+                boolean success = approvalMainService.insert(approvalMain);
+                if (success) {
+                    // 清空相关缓存
+                    System.out.println("新增审批业务成功");
+                    cache.delete(CacheNameHelper.ListAll_CacheName);
+                    return Result.build(ResultType.Success);
+                } else {
+                    System.out.println("新增审批业务失败");
+                    return Result.build(ResultType.Failed);
+                }
             }
         }
         return Result.build(ResultType.ParamError);

@@ -1,5 +1,7 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.UserinfoApply;
@@ -37,6 +39,8 @@ public class UserinfoApplyController {
     @Autowired
     private UserinfoApplyApprovalService userinfoApplyApprovalService;
     @Autowired
+    private AuthService authService;
+    @Autowired
     private RedisCache cache;
 
     /**
@@ -51,15 +55,19 @@ public class UserinfoApplyController {
 
     /**
      * 根据userId获取申请结果表
-     * @param id
      * @param response
      * @throws IOException
      */
     @ApiOperation(value="根据userId获取申请结果表", notes="未测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
-    @GetMapping("/userinfoApply/{id}")
-    public void receiveApplyResult(@PathVariable Long id, HttpServletResponse response) throws IOException {
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/userinfoApply")
+    public void receiveApplyResult(HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
         String cacheName = StudentController.CacheNameHelper.Receive_CacheNamePrefix + id;
         //测试的时候需注释掉cache缓存
 //        String json = cache.get(cacheName);
@@ -69,7 +77,6 @@ public class UserinfoApplyController {
         //遍历全部申请表
         for(int x=0;x<userinfoApplys.size();x++){
             UserinfoApplyResultModel userinfoApplyResultModel = new UserinfoApplyResultModel();
-
             //插入申请表的基础信息
             userinfoApplyResultModel.setApplyReason(userinfoApplys.get(x).getApplyReason());
             if(userinfoApplys.get(x).getApplyResult() == null){

@@ -1,5 +1,8 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
+import edu.uni.auth.service.RoleService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -28,7 +31,7 @@ import java.util.List;
 
 @Api(description = "用户学历模块")
 @Controller
-@RequestMapping("/json/userBaseInfo2/learningDegree")    ///json/【模块名】/【操作对象】/ 选项 (如果有)
+@RequestMapping("/json/userBaseInfo2")    ///json/【模块名】/【操作对象】/ 选项 (如果有)
 public class LearningDegreeController {
 
     @Autowired
@@ -51,6 +54,10 @@ public class LearningDegreeController {
     private ApprovalStepInchargeService approvalStepInchargeService;
     @Autowired
     private UserinfoApplyApprovalService userinfoApplyApprovalService;
+    @Autowired
+    private AuthService authService;
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private RedisCache cache;
 
@@ -159,7 +166,7 @@ public class LearningDegreeController {
                 long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
                 //获取角色
                 //根据roleId获取roleName
-                String roleName = roleId+"";
+                String roleName = roleService.selectRoleNameByRoleId(roleId);
                 UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
                 userinfoApplyApproval.setUniversityId(uniId);
                 userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
@@ -192,6 +199,35 @@ public class LearningDegreeController {
 
     /**
      * 根据id获取用户学历信息
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="根据类别id获取用户地址类别详情", notes="已测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/learningDegree")
+    public void receiveLearningDegree(HttpServletResponse response)throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        String cacheName = LearningDegreeController.CacheNameHelper.Receive_CacheNamePrefix + id;
+        //测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        List<LearningDegreeModel> learningDegreeModels = learningDegreeService.selectAll(id);
+        LearningDegreeVO learningDegreeVO = convertLearningDegreeFromModel(learningDegreeModels);
+        learningDegreeVO.setUserId(id);
+        System.out.println(learningDegreeVO);
+        String json = Result.build(ResultType.Success).appendData("learningDegree", learningDegreeVO).convertIntoJSON();
+        //cache.set(cacheName,json);
+        //}
+        response.getWriter().write(json);
+    }
+
+    /**
+     * 根据id获取用户学历信息
      * @param id
      * @param response
      * @throws IOException
@@ -199,7 +235,7 @@ public class LearningDegreeController {
     @ApiOperation(value="根据类别id获取用户地址类别详情", notes="已测试")
     @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
     @GetMapping("/learningDegree/{id}")
-    public void receiveLearningDegree(@PathVariable Long id, HttpServletResponse response)throws IOException {
+    public void receiveLearningDegreeById(@PathVariable Long id, HttpServletResponse response)throws IOException {
         response.setContentType("application/json;charset=utf-8");
         String cacheName = LearningDegreeController.CacheNameHelper.Receive_CacheNamePrefix + id;
         //测试的时候需注释掉cache缓存

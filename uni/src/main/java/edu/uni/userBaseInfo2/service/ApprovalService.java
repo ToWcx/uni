@@ -1,5 +1,6 @@
 package edu.uni.userBaseInfo2.service;
 
+import edu.uni.auth.bean.Role;
 import edu.uni.userBaseInfo2.service.model.ApprovalModel;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public interface ApprovalService {
 
-    List<ApprovalModel> select(long id);
+    List<ApprovalModel> select(long id,List<Role> roles);
 
     boolean update(ApprovalModel approvalModel);
 

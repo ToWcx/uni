@@ -1,5 +1,8 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
+import edu.uni.auth.service.RoleService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -42,6 +45,10 @@ public class EcommController {
     @Autowired
     private UserinfoApplyApprovalService userinfoApplyApprovalService;
     @Autowired
+    private AuthService authService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
     private RedisCache cache;
 
     /**
@@ -64,7 +71,16 @@ public class EcommController {
     @PostMapping("/ecomm")
     @ResponseBody
     public Result create(@RequestBody(required = false) Ecomm ecomm){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed,"你沒有登錄");
+        }
         if(ecomm != null){
+            long userId = user.getId();
+            ecomm.setUserId(userId);
+            ecomm.setByWho(userId);
+            ecomm.setDeleted(false);
+            ecomm.setDatetime(new Date());
             boolean success = ecommService.insert(ecomm);
             if(success){
                 // 清空相关缓存
@@ -110,11 +126,17 @@ public class EcommController {
     @PutMapping("/Ecomm")
     @ResponseBody
     public Result updateStudent(@RequestBody(required = false) EcommAU ecommAU){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed,"你沒有登錄");
+        }
         if(ecommAU != null) {
+            long userId = user.getId();
             Ecomm ecomm = ecommAU.getEcomm();
             UserinfoApply userinfoApply = ecommAU.getUserinfoApply();
             Date date = new Date();
-            long userId = userinfoApply.getByWho();
+            ecomm.setUserId(userId);
+            userinfoApply.setByWho(userId);
             ecomm.setDatetime(date);
             ecomm.setDeleted(true);  //改
             ecomm.setByWho(userinfoApply.getByWho());
@@ -134,8 +156,6 @@ public class EcommController {
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生申请修改通讯");
                 } else if(ecommAU.getType() == 2){
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"职员申请修改通讯");
-                } else if(ecommAU.getType() == 4){
-                    approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生亲属申请修改通讯");
                 }
                 long AMId = approvalMain.getId();
                 if(approvalMain == null){
@@ -159,7 +179,7 @@ public class EcommController {
                 long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
                 //获取角色
                 //根据roleId获取roleName
-                String roleName = roleId+"";
+                String roleName = roleService.selectRoleNameByRoleId(roleId);
                 UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
                 userinfoApplyApproval.setUniversityId(uniId);
                 userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
@@ -194,25 +214,65 @@ public class EcommController {
 
     /**
      * 根据id获取用户通讯地址信息
-     * @param id
      * @param response
      * @throws IOException
      */
     @ApiOperation(value="根据类别id获取用户通讯地址类别详情", notes="未测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
-    @GetMapping("/ecomm/{id}")
-    public void receiveEcomm(@PathVariable Long id, HttpServletResponse response) throws IOException {
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "query")
+    @GetMapping("/ecomm")
+    public void receiveEcomm(HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        System.out.println(id);
         String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
         //测试的时候需注释掉cache缓存
 //        String json = cache.get(cacheName);
 //        if(json == null){
-            List<EcommModel> ecommModels = ecommService.selectAll(id);
-            System.out.println(ecommService);
-            EcommVO ecommVO = convertEcommFromModel(ecommModels);
-            ecommVO.setUserId(id);
-            System.out.println(ecommVO);
-            String json = Result.build(ResultType.Success).appendData("ecomm", ecommVO).convertIntoJSON();
+        List<EcommModel> ecommModels = ecommService.selectAll(id);
+        System.out.println(ecommService);
+        EcommVO ecommVO = convertEcommFromModel(ecommModels);
+        ecommVO.setUserId(id);
+        System.out.println(ecommVO);
+        String json = Result.build(ResultType.Success).appendData("ecomm", ecommVO).convertIntoJSON();
+//            cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
+     * 根据id获取用户通讯地址信息
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="根据类别id获取用户通讯地址类别详情", notes="未测试")
+    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "query")
+    @GetMapping("/ecomm/{id}")
+    public void receiveEcommById(@RequestParam(required = false) Long id, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+//            String json = Result.build(ResultType.Failed).appendData("login", "fail" ).convertIntoJSON();
+//            response.getWriter().write(json);
+            return;
+        }
+        if(id == null){
+            id = user.getId();
+        }
+        System.out.println(id);
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+        //测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        List<EcommModel> ecommModels = ecommService.selectAll(id);
+        System.out.println(ecommService);
+        EcommVO ecommVO = convertEcommFromModel(ecommModels);
+        ecommVO.setUserId(id);
+        System.out.println(ecommVO);
+        String json = Result.build(ResultType.Success).appendData("ecomm", ecommVO).convertIntoJSON();
 //            cache.set(cacheName, json);
 //        }
         response.getWriter().write(json);

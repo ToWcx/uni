@@ -1,5 +1,8 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
+import edu.uni.auth.service.RoleService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -41,6 +44,10 @@ public class EmployeeHistoryController {
     private ApprovalStepInchargeService approvalStepInchargeService;
     @Autowired
     private UserinfoApplyApprovalService userinfoApplyApprovalService;
+    @Autowired
+    private AuthService authService;
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private RedisCache cache;
     /**
@@ -136,7 +143,7 @@ public class EmployeeHistoryController {
                 long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
                 //获取角色
                 //根据roleId获取roleName
-                String roleName = roleId+"";
+                String roleName = roleService.selectRoleNameByRoleId(roleId);
                 UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
                 userinfoApplyApproval.setUniversityId(uniId);
                 userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
@@ -188,6 +195,33 @@ public class EmployeeHistoryController {
     }
 
     /**
+     * 查找教职工的所有简历信息
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value = "获取所有简历信息",notes = "未测试")
+//    @ApiImplicitParam(name = "id",value = "类别id",required = true,dataType = "Long",paramType = "path")
+    @GetMapping("/employeeHistory")
+    public void receiveEmployeeHistory (HttpServletResponse response) throws  IOException{
+        response.setContentType("application/json;charset = utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        String cacheName = EmployeeHistoryController.CacheNameHelper.Receive_CacheNamePrefix+id;
+        // String json = cache.get(cacheName);
+        // if(json = null){
+        List<EmployeeHistoryModel> employeeHistoryModels = employeeHistoryService.selectAll(id);
+        EmployeeHistoryVO employeeHistoryVO =convertEmployeeHistoryFromModel(employeeHistoryModels);
+        employeeHistoryVO.setUserId(id);
+        System.out.println("HistoryController---"+employeeHistoryVO);
+        String json = Result.build(ResultType.Success).appendData("employeeHistory",employeeHistoryVO).convertIntoJSON();
+        //  }
+        response.getWriter().write(json);
+    }
+
+    /**
      * 根据id查找某个教职工的所有简历信息
      * @param id
      * @param response
@@ -196,7 +230,7 @@ public class EmployeeHistoryController {
     @ApiOperation(value = "根据类别id获取类别详情",notes = "已测试")
     @ApiImplicitParam(name = "id",value = "类别id",required = true,dataType = "Long",paramType = "path")
     @GetMapping("/employeeHistory/{id}")
-    public void receiveEmployeeHistory (@PathVariable Long id,HttpServletResponse response) throws  IOException{
+    public void receiveEmployeeHistoryById (@PathVariable Long id,HttpServletResponse response) throws  IOException{
         response.setContentType("application/json;charset = utf-8");
         String cacheName = EmployeeHistoryController.CacheNameHelper.Receive_CacheNamePrefix+id;
         // String json = cache.get(cacheName);

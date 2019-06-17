@@ -1,5 +1,8 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
+import edu.uni.auth.service.RoleService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.*;
@@ -51,6 +54,10 @@ public class AddressController {
     private AddrAreaService addrAreaService;
     @Autowired
     private AddrStreetService addrStreetService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private AuthService authService;
     @Autowired
     private RedisCache cache;
 
@@ -124,20 +131,20 @@ public class AddressController {
     @PutMapping("/Address")
     @ResponseBody
     public Result updateStudent(@RequestBody(required = false) AddressAU addressAU){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed, "你沒有登錄");
+        }
+        addressAU.getUserinfoApply().setByWho(user.getId());
         if(addressAU != null) {
             System.out.println(addressAU);
-            //********************************************
             addressAU.setCountry(addrCountryService.selectIdByCode(addressAU.getCountry()).getId());
             addressAU.setState(addrStateService.selectIdByCode(addressAU.getState()).getId());
             addressAU.setCity(addrCityService.selectIdByCode(addressAU.getCity()).getId());
             addressAU.setArea(addrAreaService.selectIdByCode(addressAU.getArea()).getId());
             addressAU.setStreet(addrStreetService.selectIdByCode(addressAU.getStreet()).getId());
-            System.out.println(addressAU);
-            //********************************************
             Address address = new Address();
             BeanUtils.copyProperties(addressAU,address);
-            System.out.println(address);
-            System.out.println("进入updateStudent Line129**************");
             UserinfoApply userinfoApply = addressAU.getUserinfoApply();
             Date date = new Date();
             long userId = userinfoApply.getByWho();
@@ -162,9 +169,8 @@ public class AddressController {
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生申请修改地址");
                 }else if(addressAU.getType() == 2){
                     approvalMain = approvalMainService.selectByUniIdAndName(uniId,"职员申请修改地址");
-                }else if(addressAU.getType() == 4){
-                    approvalMain = approvalMainService.selectByUniIdAndName(uniId,"学生亲属申请修改地址");
                 }
+
                 long AMId = approvalMain.getId();
                 if(approvalMain == null){
                     System.out.println("approvalMain为空 查询不到该审批步数规定表");
@@ -187,7 +193,7 @@ public class AddressController {
                 long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
                 //获取角色
                 //根据roleId获取roleName
-                String roleName = roleId+"";
+                String roleName = roleService.selectRoleNameByRoleId(roleId);
                 UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
                 userinfoApplyApproval.setUniversityId(uniId);
                 userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
@@ -199,16 +205,16 @@ public class AddressController {
                 userinfoApplyApproval.setByWho(userId);
                 userinfoApplyApproval.setDeleted(false);
 
-                    boolean success = userinfoApplyApprovalService.insert(userinfoApplyApproval);
-                    if (success) {
-                        //什么时候删除缓存？ 成功审批后吗？  放到最后一步再删除？
+                boolean success = userinfoApplyApprovalService.insert(userinfoApplyApproval);
+                if (success) {
+                    //什么时候删除缓存？ 成功审批后吗？  放到最后一步再删除？
 //                        cache.delete(CacheNameHelper.Receive_CacheNamePrefix + address.getId());
 //                        cache.delete(CacheNameHelper.ListAll_CacheName);
-                        System.out.println("插入审批流程表成功");
-                        return Result.build(ResultType.Success);
-                    } else {
-                        return Result.build(ResultType.Failed);
-                    }
+                    System.out.println("插入审批流程表成功");
+                    return Result.build(ResultType.Success);
+                } else {
+                    return Result.build(ResultType.Failed);
+                }
 
             }else {
                 System.out.println("修改地址信息失败 无法插入地址");
@@ -365,16 +371,52 @@ public class AddressController {
     }
 
     /**
+     * 获取用户地址信息
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="获取用户地址类别详情", notes="已测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "query")
+    @GetMapping("/address")
+    public void receiveAddress(HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        String cacheName = StudentController.CacheNameHelper.Receive_CacheNamePrefix + id;
+        //测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        List<AddressModel> addressModel = addressService.selectAll(id);
+        AddressVO addressVO = convertAddressFromModel(addressModel);
+        addressVO.setUserId(id);
+        System.out.println(addressVO);
+        String json = Result.build(ResultType.Success).appendData("address", addressVO ).convertIntoJSON();
+//            cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
      * 根据id获取用户地址信息
-     * @param id
      * @param response
      * @throws IOException
      */
     @ApiOperation(value="根据用户id获取用户地址类别详情", notes="已测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "query")
     @GetMapping("/address/{id}")
-    public void receiveAddress(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    public void receiveAddressById(@RequestParam(required = false) Long id, HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            String json = Result.build(ResultType.Failed).appendData("login", "fail" ).convertIntoJSON();
+            response.getWriter().write(json);
+        }
+        if(id == null){
+            id = user.getId();
+        }
         String cacheName = StudentController.CacheNameHelper.Receive_CacheNamePrefix + id;
         //测试的时候需注释掉cache缓存
 //        String json = cache.get(cacheName);

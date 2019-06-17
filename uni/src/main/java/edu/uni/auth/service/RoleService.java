@@ -48,6 +48,11 @@ public interface RoleService {
     List<Role> selectByUidAndUniversityId(long uid, long universityId);
 
     /**
+     * 根据roleId获取角色名roleName
+     */
+    String selectRoleNameByRoleId(long roleId);
+
+    /**
      * 更新某学校中某用户的角色集合
      * @param roleIds
      * @param userId
@@ -63,4 +68,5 @@ public interface RoleService {
      * @param funcIds
      */
     void updateRoleFuncSet(Long universityId, Long roleId, List<Long> funcIds) throws SQLException;
+
 }

@@ -2,6 +2,9 @@ package edu.uni.userBaseInfo2.controller;
 
 import edu.uni.administrativestructure.bean.Class;
 import edu.uni.administrativestructure.service.ClassService;
+import edu.uni.auth.bean.User;
+import edu.uni.auth.service.AuthService;
+import edu.uni.auth.service.RoleService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
@@ -60,6 +63,10 @@ public class StudentController {
     private ClassService classService;
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private AuthService authService;
 
     /**
      * 内部类，专门用来管理每个get方法所对应缓存的名称。
@@ -69,9 +76,6 @@ public class StudentController {
         public static final String ListAll_CacheName = "ub2_s_students_listAll";
         // e_c_category_{类别id}
         public static final String Receive_CacheNamePrefix = "ub2_s_student_";
-
-
-
     }
 
     /**
@@ -127,20 +131,25 @@ public class StudentController {
     @PutMapping("/student")
     @ResponseBody
     public Result updateStudent(@RequestBody(required = false) StudentAU studentAU){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed, "你沒有登錄");
+        }
+        long userId = user.getId();
         if(studentAU != null) {
             StudentModel studentModel = studentAU.getStudentModel();
             System.out.println("进入student Update Line124*****************");
             Student student = convertBeanFromModel(studentModel);
             UserinfoApply userinfoApply = studentAU.getUserinfoApply();
+            userinfoApply.setByWho(userId);
             Date date = new Date();
-            long userId = userinfoApply.getByWho();
             //根据userId查到用户的学校id
             Long uniId = userService.selectUniIdById(userinfoApply.getByWho()).getUniversityId();
+//            student.setUserId(userId);
             student.setDatetime(date);
             student.setDeleted(true);  //改
             student.setByWho(userinfoApply.getByWho());
             student.setUniversityId(uniId);
-
             boolean isSuccess = studentService.insert(student);
             if (isSuccess == true) {    //插入成功
                 System.out.println("新增学生基础信息成功");
@@ -173,7 +182,7 @@ public class StudentController {
                 long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
                 //获取角色
                 //根据roleId获取roleName
-                String roleName = roleId+"";
+                String roleName = roleService.selectRoleNameByRoleId(roleId);
                 UserinfoApplyApproval userinfoApplyApproval = new UserinfoApplyApproval();
                 userinfoApplyApproval.setUniversityId(uniId);
                 userinfoApplyApproval.setUserinfoApplyId(userinfoApply.getId());
@@ -231,16 +240,50 @@ public class StudentController {
     }
 
     /**
-     * 根据id获取学生所有信息
-     * @param id
+     * 获取学生基础信息
      * @param response
      * @throws IOException
      */
-    @ApiOperation(value="根据类别id获取学生所有信息", notes="未测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
-    @GetMapping("/student/ListAll/{id}")
-    public void listAllById(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    @ApiOperation(value="获取学生基础信息", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/student")
+    public void receiveBase(HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        StudentModel studentModel = studentService.select(id);
+        System.out.println(studentModel);
+//            StudentVO studentVO = convertStudentFromModel(studentModel);
+//            studentVO.setUserId(id);
+//            System.out.println(studentVO);
+        String json = Result.build(ResultType.Success).appendData("studentBase", studentModel ).convertIntoJSON();
+//            cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
+     * 获取学生所有信息
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="获取学生所有信息", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/student/ListAll")
+    public void listAllById(HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
         String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
 //        测试的时候需注释掉cache缓存
 //        String json = cache.get(cacheName);
@@ -262,7 +305,7 @@ public class StudentController {
      * 获取全部学生基础信息
      */
     @ApiOperation(value = "列举所有类别", notes = "未测试")
-    @GetMapping("/students/listAll")
+    @GetMapping("/students/listAllStudent")
     public void listAll(HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
         String cacheName = CacheNameHelper.ListAll_CacheName;
@@ -303,16 +346,20 @@ public class StudentController {
     }
 
     /**
-     * 根据id获取同班同学部分信息
-     * @param id
+     * 获取同班同学部分信息
      * @param response
      * @throws IOException
      */
-    @ApiOperation(value="根据类别id获取同班同学部分信息", notes="未测试")
-    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
-    @GetMapping("/students/listByUserIdAnClass/{id}")
-    public void listByUserIdAnClass(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    @ApiOperation(value="获取同班同学部分信息", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/students/listByUserIdAnClass")
+    public void listByUserIdAnClass(HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
         String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
 //        测试的时候需注释掉cache缓存
 //        String json = cache.get(cacheName);
@@ -355,6 +402,43 @@ public class StudentController {
     }
 
     /**
+     * 获取班主任部分信息(姓名、科室、电子通讯)
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="获取班主任部分信息(姓名、科室、电子通讯)", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "userId", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/students/receiveHeadmaster")
+    public void receiveHeadmaster(HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        long classId = studentService.selectClassByUserId(id);
+        Class aClass = classService.select(classId);
+        long tId = aClass.getHeadteacher();
+        long uId = employeeService.selectById(tId).getUserId();
+        String tName = userService.select(uId).getUserName();
+        List<EcommModel> ecommModels = ecommService.selectAll(uId);
+        HeadMasterVO headMasterVO = new HeadMasterVO();
+        headMasterVO.setName(tName);
+        headMasterVO.setSubdepartment("暂不写接口");
+        headMasterVO.setEcommModels(ecommModels);
+
+
+        String json = Result.build(ResultType.Success).appendData("headMaster", headMasterVO ).convertIntoJSON();
+//            cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
      * 根据userId获取班主任部分信息(姓名、科室、电子通讯)
      * @param id
      * @param response
@@ -363,7 +447,7 @@ public class StudentController {
     @ApiOperation(value="根据userId获取班主任部分信息(姓名、科室、电子通讯)", notes="未测试")
     @ApiImplicitParam(name = "id", value = "userId", required = false, dataType = "Long", paramType = "path")
     @GetMapping("/students/receiveHeadmaster/{id}")
-    public void receiveHeadmaster(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    public void receiveHeadmasterById(@PathVariable Long id, HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
         String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
 //        测试的时候需注释掉cache缓存

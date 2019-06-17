@@ -1,5 +1,8 @@
 package edu.uni.userBaseInfo2.service.impl;
 
+import edu.uni.auth.bean.Role;
+import edu.uni.auth.mapper.RoleMapper;
+import edu.uni.auth.service.RoleService;
 import edu.uni.userBaseInfo2.bean.ApprovalMain;
 import edu.uni.userBaseInfo2.bean.UserinfoApply;
 import edu.uni.userBaseInfo2.bean.UserinfoApplyApproval;
@@ -34,12 +37,16 @@ public class ApprovalServiceImpl implements ApprovalService {
     private UserMapper userMapper;
 
     @Override
-    public List<ApprovalModel> select(long id) {
+    public List<ApprovalModel> select(long id, List<Role> roles) {
 
         //根据user_id查询user_role表找到role_id,根据role_id查找role表找到role_name
         List<String> roleNames = new ArrayList<>();
-        roleNames.add("3");   //班主任权限
-        roleNames.add("4"); //辅导员权限
+        for(int i=0;i<roles.size();i++){
+            roleNames.add(roles.get(i).getName());
+        }
+        System.out.println("用户的角色s："+roleNames);
+//        roleNames.add("3");   //班主任权限
+//        roleNames.add("4"); //辅导员权限
 //        roleNames.add("5"); //副书记权限
 //        roleNames.add("6"); //书记权限
 //        roleNames.add("7"); //副院长权限

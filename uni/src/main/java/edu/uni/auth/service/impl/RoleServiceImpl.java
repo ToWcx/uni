@@ -139,6 +139,11 @@ public class RoleServiceImpl implements RoleService {
         return roles;
     }
 
+    @Override
+    public String selectRoleNameByRoleId(long roleId) {
+        return roleMapper.selectByPrimaryKey(roleId).getName();
+    }
+
 
     /**
      * 更新某学校中某用户的角色集合

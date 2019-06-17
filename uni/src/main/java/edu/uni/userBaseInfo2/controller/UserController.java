@@ -1,5 +1,6 @@
 package edu.uni.userBaseInfo2.controller;
 
+import edu.uni.auth.service.AuthService;
 import edu.uni.bean.Result;
 import edu.uni.bean.ResultType;
 import edu.uni.userBaseInfo2.bean.User;
@@ -22,6 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthService authService;
     @Autowired
     private RedisCache cache;
 
@@ -99,6 +102,33 @@ public class UserController {
     }
 
     /**
+     * 获取学生基础信息
+     * @param response
+     * @throws IOException
+     */
+    @ApiOperation(value="获取学生基础信息类别详情", notes="未测试")
+//    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
+    @GetMapping("/UserBase")
+    public void receiveBase(HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        edu.uni.auth.bean.User user = authService.getUser();
+        if(user == null){
+            return;
+        }
+        long id = user.getId();
+        String cacheName = CacheNameHelper.Receive_CacheNamePrefix + id;
+//        测试的时候需注释掉cache缓存
+//        String json = cache.get(cacheName);
+//        if(json == null){
+        UserModel userModel = userService.select(id);
+        System.out.println(userModel);
+        String json = Result.build(ResultType.Success).appendData("Userbase",userModel).convertIntoJSON();
+//            cache.set(cacheName, json);
+//        }
+        response.getWriter().write(json);
+    }
+
+    /**
      * 根据id获取学生基础信息
      * @param id
      * @param response
@@ -120,6 +150,7 @@ public class UserController {
 //        }
         response.getWriter().write(json);
     }
+
     /**
      * 获取全部用户信息
      */

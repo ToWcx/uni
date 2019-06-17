@@ -22,6 +22,8 @@ public interface EmployeeMapper {
     
     Employee selectById(Long id);
 
+    List<Employee> selectByUniversityId(long id);
+
 //    int updateByUserId(Long id);
     //根据表id逻辑删除旧信息
     int updateById(Long id);
