@@ -180,8 +180,6 @@ public class UserinfoApplyApprovalController {
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(addressService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有地址记录成功");
-                                addressService.updateTrueById(newId);
-                                System.out.println("更新"+approvalMainName+"地址信息成功");
                             }else {
                                 System.out.println("AddressController.update -> 删除已有地址记录失败");
                                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -189,6 +187,8 @@ public class UserinfoApplyApprovalController {
                                 return Result.build(ResultType.Failed);
                             }
                         }
+                        addressService.updateTrueById(newId);
+                        System.out.println("更新"+approvalMainName+"地址信息成功");
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
@@ -197,7 +197,7 @@ public class UserinfoApplyApprovalController {
                         } else {
                             System.out.println("更新用户信息表失败");
                             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                                return Result.build(ResultType.Failed);
+                            return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("学生申请修改通讯") || approvalMainName.equals("职员申请修改通讯")){
                         Ecomm ecomm = ecommService.select(oldId);
@@ -292,7 +292,7 @@ public class UserinfoApplyApprovalController {
                     } else if(approvalMainName.equals("人事处申请修改职员信息")){
                         Employee employee = employeeService.selectById(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
-                            if(employeeService.updateById(employee.getUserId()) == true){
+                            if(employeeService.updateById(oldId) == true){
                                 System.out.println("studentController.update -> 删除已有职员记录成功");
                             }else {
                                 System.out.println("EcommController.update -> 删除已有职员记录失败");

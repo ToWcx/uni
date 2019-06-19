@@ -502,7 +502,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeModel.setEmpNo(employee.getEmpNo());
             employeeModel.setDepartment(employee.getDepartmentId().toString());
             employeeModel.setSubdepartment(employee.getSubdepartmentId().toString());
-            employeeModel.setPosition(employee.getPositionId().toString());
+            employeeModel.setPosition("");
             employeeModel.setDiscipline(major);
             employeeModel.setPolitical(political);
         }

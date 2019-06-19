@@ -126,6 +126,7 @@ public class EmployeeController {
             Long uniId = userService.selectUniIdById(userId).getUniversityId();
             //不修改当前住址和通讯方式以及简历
             Employee employee1 = employeeService.selectById(userinfoApply.getOldInfoId());
+            employee.setUserId(userId);
             employee.setEmployHistoryId(employee1.getEmployHistoryId());
             employee.setHomeAddressId(employee1.getHomeAddressId());
             employee.setPhoneEcommId(employee1.getPhoneEcommId());
