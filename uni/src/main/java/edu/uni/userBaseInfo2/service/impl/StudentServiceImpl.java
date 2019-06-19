@@ -2,10 +2,7 @@ package edu.uni.userBaseInfo2.service.impl;
 
 import edu.uni.userBaseInfo2.bean.*;
 import edu.uni.userBaseInfo2.mapper.*;
-import edu.uni.userBaseInfo2.service.AddressService;
-import edu.uni.userBaseInfo2.service.EcommService;
 import edu.uni.userBaseInfo2.service.StudentService;
-import edu.uni.userBaseInfo2.service.UserService;
 import edu.uni.userBaseInfo2.service.model.ClassMateModel;
 
 import edu.uni.userBaseInfo2.service.model.StudentModel;
@@ -64,10 +61,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public StudentModel select(long id) {
-        //测试
         Student student = studentMapper.selectByUserIdAndDelete(id);
-//        System.out.println("StuServiceImpl测试Map  student:" + student);
-//        List<StudentRelation> studentRelations = studentRelationMapper.selectByUserId(id);
         //照片暂不添加
         StudentModel studentModel = convertFromBean(student);
         String liveRoom = "学生宿舍紫薇苑1栋101";

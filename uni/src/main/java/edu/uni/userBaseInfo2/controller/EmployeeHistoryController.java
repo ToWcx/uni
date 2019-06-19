@@ -97,14 +97,18 @@ public class EmployeeHistoryController {
     @PutMapping("/employeeHistory")
     @ResponseBody
     public Result updateEmployeeHistory(@RequestBody(required = false) EmployeeHistoryAU employeeHistoryAU){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed, "你沒有登錄");
+        }
+        long userId = user.getId();
         if(employeeHistoryAU != null) {
             EmployeeHistoryModel employeeHistoryModel = employeeHistoryAU.getEmployeeHistoryModel();
             EmployeeHistory employeeHistory = new EmployeeHistory();
             BeanUtils.copyProperties(employeeHistoryModel,employeeHistory);
             UserinfoApply userinfoApply = employeeHistoryAU.getUserinfoApply();
             Date date = new Date();
-            long userId = userinfoApply.getByWho();
-            employeeHistory.setId(null);
+            userinfoApply.setByWho(userId);
             employeeHistory.setUserId(userId);
             employeeHistory.setDatetime(date);
             employeeHistory.setDeleted(true);  //改

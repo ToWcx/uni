@@ -548,7 +548,7 @@ public class EmployeeController {
         employeeInfoVO.setEmployeeModel(employeeService.select(id));
         employeeInfoVO.setLearningDegreeModels(learningDegreeService.selectAll(id));
         employeeInfoVO.setEmployeeHistoryModels(employeeHistoryService.selectAll(id));
-        employeeInfoVO.setUserModel(null);
+        employeeInfoVO.setUserModel(userService.select(id));
         System.out.println(employeeInfoVO);
         String json= Result.build(ResultType.Success).appendData("employeeInfo",employeeInfoVO).convertIntoJSON();
         //cache.set(cacheName,json);

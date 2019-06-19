@@ -77,7 +77,7 @@ public class LearningDegreeController {
      */
     @ApiOperation(value="新增类别", notes="已测试")
     @ApiImplicitParam(name = "learningDegree", value = "类别详情实体", required = true, dataType = "LearningDegree")
-    @PostMapping("/learningDegree")
+    @PostMapping("/addLearningDegree")
     @ResponseBody
     public Result create(@RequestBody(required = false) LearningDegree learningDegree){
         if(learningDegree != null){
@@ -122,12 +122,17 @@ public class LearningDegreeController {
     @PutMapping("/learningDegree")
     @ResponseBody
     public Result updateStudent(@RequestBody(required = false) LearningDegreeAU learningDegreeAU){
+        User user = authService.getUser();
+        if(user == null){
+            return Result.build(ResultType.Failed, "你沒有登錄");
+        }
+        long userId = user.getId();
         if(learningDegreeAU != null) {
             LearningDegreeModel learningDegreeModel = learningDegreeAU.getLearningDegreeModel();
             LearningDegree learningDegree = convertBeanFromModel(learningDegreeModel);
             UserinfoApply userinfoApply = learningDegreeAU.getUserinfoApply();
             Date date = new Date();
-            long userId = userinfoApply.getByWho();
+            userinfoApply.setByWho(userId);
             learningDegree.setUserId(userId);
             learningDegree.setDatetime(date);
             learningDegree.setDeleted(true);  //改
@@ -264,6 +269,7 @@ public class LearningDegreeController {
         if(learningDegreeModel == null){
             return null;
         }
+        System.out.println(learningDegreeModel);
         LearningDegree learningDegree = new LearningDegree();
         BeanUtils.copyProperties(learningDegreeModel,learningDegree);
         learningDegree.setAcademicId(academicService.selectByName(learningDegreeModel.getAcademic()).getId());

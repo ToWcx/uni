@@ -109,8 +109,8 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setLoginUrl("/json/auth/403");
         // 登录成功后要跳转的链接
 //        shiroFilterFactoryBean.setSuccessUrl("http://localhost:8080/#/home/announcement");
-        shiroFilterFactoryBean.setSuccessUrl("http://10.78.3.40:8080/#/home/announcement");
-//        shiroFilterFactoryBean.setSuccessUrl("/json/auth/success");
+//        shiroFilterFactoryBean.setSuccessUrl("http://10.78.3.40:8080/#/home/announcement");
+        shiroFilterFactoryBean.setSuccessUrl("/json/auth/success");
         // 未授权界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/json/auth/403");
 

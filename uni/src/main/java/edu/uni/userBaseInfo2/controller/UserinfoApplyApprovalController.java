@@ -18,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -80,6 +81,7 @@ public class UserinfoApplyApprovalController {
      * @param response
      * @throws IOException
      */
+    @Transactional
     @ApiOperation(value="获取审批表", notes="未测试")
 //    @ApiImplicitParam(name = "id", value = "类别id", required = false, dataType = "Long", paramType = "path")
     @GetMapping("/userinfoApplyApproval")
@@ -164,7 +166,10 @@ public class UserinfoApplyApprovalController {
                 String approvalMainName = approvalMain.getName();
                 int stepCnt = approvalMain.getStepCnt();
                 if(step > stepCnt && result == 1) {    //审批通过且审批结束
-                    long oldId = userinfoApply.getOldInfoId();
+                    long oldId = 0;
+                    if(userinfoApply.getOldInfoId() != null){
+                        oldId = userinfoApply.getOldInfoId();
+                    }
                     System.out.println("oldId: " + oldId);
                     long newId = userinfoApply.getNewInfoId();
                     if(approvalMainName.equals("学生申请修改地址") || approvalMainName.equals("职员申请修改地址")){
@@ -173,130 +178,144 @@ public class UserinfoApplyApprovalController {
 //                        Address addr = addressService.selectByUserIdAndFlag(user_id,address.getFlag());
 //                        if(addr != null){   //若已存在地址信息 删除
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
-                            Address address = addressService.select(oldId);
                             if(addressService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有地址记录成功");
                                 addressService.updateTrueById(newId);
                                 System.out.println("更新"+approvalMainName+"地址信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
                             }else {
                                 System.out.println("AddressController.update -> 删除已有地址记录失败");
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
+                        }
+                        Date endTime = new Date();
+                        userinfoApply.setEndTime(endTime);
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        if(userinfoApplyService.update(userinfoApply) == true) {
+                            System.out.println("更新用户信息表成功");
+                        } else {
+                            System.out.println("更新用户信息表失败");
+                            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("学生申请修改通讯") || approvalMainName.equals("职员申请修改通讯")){
                         Ecomm ecomm = ecommService.select(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(ecommService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有通讯记录成功");
-                                ecommService.updateTrueById(newId);
-                                System.out.println("更新"+approvalMainName+"通讯信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
                             }else {
                                 System.out.println("EcommController.update -> 删除已有通讯记录失败");
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
+                        }
+                        ecommService.updateTrueById(newId);
+                        System.out.println("更新"+approvalMainName+"通讯信息成功");
+                        Date endTime = new Date();
+                        userinfoApply.setEndTime(endTime);
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        if(userinfoApplyService.update(userinfoApply) == true) {
+                            System.out.println("更新用户信息表成功");
+                        } else {
+                            System.out.println("更新用户信息表失败");
+                            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("辅导员申请修改学生信息")){
                         Student student = studentService.selectBean(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(studentService.updateById(oldId) == true){
                                 System.out.println("studentController.update -> 删除已有学生记录成功");
-                                studentService.updateTrueById(newId);
-                                System.out.println("更新学生信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
                             }else {
                                 System.out.println("EcommController.update -> 删除已有学生记录失败");
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
+                        }
+                        studentService.updateTrueById(newId);
+                        System.out.println("更新学生信息成功");
+                        Date endTime = new Date();
+                        userinfoApply.setEndTime(endTime);
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        if(userinfoApplyService.update(userinfoApply) == true) {
+                            System.out.println("更新用户信息表成功");
+                        } else {
+                            System.out.println("更新用户信息表失败");
+                            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("人事处申请修改职员学历")){
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(learningDegreeService.updateById(oldId) == true){
                                 System.out.println("studentController.update -> 删除已有学历记录成功");
-                                learningDegreeService.updateTrueById(newId);
-                                System.out.println("更新学历信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
                             }else {
                                 System.out.println("EcommController.update -> 删除已有学历记录失败");
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
+                        }
+                        learningDegreeService.updateTrueById(newId);
+                        System.out.println("更新学历信息成功");
+                        Date endTime = new Date();
+                        userinfoApply.setEndTime(endTime);
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        if(userinfoApplyService.update(userinfoApply) == true) {
+                            System.out.println("更新用户信息表成功");
+                        } else {
+                            System.out.println("更新用户信息表失败");
+                            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("人事处申请修改职员简历")){
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(employeeHistoryService.updateById(oldId) == true){
                                 System.out.println("employeeHistoryController.update -> 删除已有简历记录成功");
-                                employeeHistoryService.updateTrueById(newId);
-                                System.out.println("更新简历信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
                             }else {
                                 System.out.println("EcommController.update -> 删除已有简历记录失败");
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
+                        }
+                        employeeHistoryService.updateTrueById(newId);
+                        System.out.println("更新简历信息成功");
+                        Date endTime = new Date();
+                        userinfoApply.setEndTime(endTime);
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        if(userinfoApplyService.update(userinfoApply) == true) {
+                            System.out.println("更新用户信息表成功");
+                        } else {
+                            System.out.println("更新用户信息表失败");
+                            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("人事处申请修改职员信息")){
                         Employee employee = employeeService.selectById(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(employeeService.updateById(employee.getUserId()) == true){
                                 System.out.println("studentController.update -> 删除已有职员记录成功");
-                                employeeService.updateTrueById(newId);
-                                System.out.println("更新职员信息成功");
-                                Date endTime = new Date();
-                                userinfoApply.setEndTime(endTime);
-                                userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
-                                if(userinfoApplyService.update(userinfoApply) == true) {
-                                    System.out.println("更新用户信息表成功");
-                                } else {
-                                    System.out.println("更新用户信息表失败");
-                                    return Result.build(ResultType.Failed);
-                                }
                             }else {
                                 System.out.println("EcommController.update -> 删除已有职员记录失败");
+                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
                         }
+                        employeeService.updateTrueById(newId);
+                        System.out.println("更新职员信息成功");
+                        Date endTime = new Date();
+                        userinfoApply.setEndTime(endTime);
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        if(userinfoApplyService.update(userinfoApply) == true) {
+                            System.out.println("更新用户信息表成功");
+                        } else {
+                            System.out.println("更新用户信息表失败");
+                            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                            return Result.build(ResultType.Failed);
+                        }
                     } else {
                         System.out.println("申请修改其他类型 暂无其他类型代码 审批结束");
+                        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                        return Result.build(ResultType.Failed);
                     }
                 } else if(step <= stepCnt && result == 1) {  //审批通过且审批未结束
                     long roleId = approvalStepInchargeService.selectByAMIdAndStep(AMId,step).getRoleId();
@@ -318,6 +337,7 @@ public class UserinfoApplyApprovalController {
                     boolean success1 = userinfoApplyApprovalService.insert(userinfoApplyApproval1);
                     if(!success1){
                         System.out.println("插入审批表错误 userinfoApplyApprovalController Lin148");
+                        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                         return Result.build(ResultType.Failed);
                     }
                 } else if(result == 2){ //审批不通过
@@ -328,6 +348,7 @@ public class UserinfoApplyApprovalController {
                         System.out.println("更新用户信息表成功");
                     } else {
                         System.out.println("更新用户信息表失败");
+                        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                         return Result.build(ResultType.Failed);
                     }
                 } else {
@@ -336,6 +357,7 @@ public class UserinfoApplyApprovalController {
                 return Result.build(ResultType.Success);
             }else{
                 System.out.println("更新审批流程表失败");
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                 return Result.build(ResultType.Failed);
             }
         }

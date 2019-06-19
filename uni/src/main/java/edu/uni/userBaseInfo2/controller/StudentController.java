@@ -293,7 +293,7 @@ public class StudentController {
         studentInfoVO.setAddressModels(addressService.selectAll(id));
         studentInfoVO.setEcommModels(ecommService.selectAll(id));
         studentInfoVO.setStudentModel(studentService.select(id));
-        studentInfoVO.setUserModel(null);    //缺少user接口
+        studentInfoVO.setUserModel(userService.select(id));
         System.out.println(studentInfoVO);
         String json = Result.build(ResultType.Success).appendData("studentInfo", studentInfoVO ).convertIntoJSON();
 //            cache.set(cacheName, json);
@@ -461,7 +461,7 @@ public class StudentController {
         List<EcommModel> ecommModels = ecommService.selectAll(uId);
         HeadMasterVO headMasterVO = new HeadMasterVO();
         headMasterVO.setName(tName);
-        headMasterVO.setSubdepartment("暂不写接口");
+        headMasterVO.setSubdepartment("无法找到科室");
         headMasterVO.setEcommModels(ecommModels);
 
 

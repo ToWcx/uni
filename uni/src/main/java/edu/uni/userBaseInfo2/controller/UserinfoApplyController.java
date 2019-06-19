@@ -102,7 +102,6 @@ public class UserinfoApplyController {
                 }
                 approvalStepModel.setStep(userinfoApplyApprovals.get(i).getStep());
                 if(userinfoApplyApprovals.get(i).getResult() == null){
-                    System.out.println("result为空");
                     approvalStepModel.setResult(0);
                 } else if(userinfoApplyApprovals.get(i).getResult() == true){
                     approvalStepModel.setResult(1); //1是通过 2是不通过 0是未审批
