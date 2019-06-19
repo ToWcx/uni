@@ -19,7 +19,7 @@ public class StudentModel {
 
     private String stuNo;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date beginLearnDate;
 
     private String grade;

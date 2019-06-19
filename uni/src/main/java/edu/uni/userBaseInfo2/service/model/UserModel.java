@@ -18,7 +18,7 @@ public class UserModel {
 
     private String userSex;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date userBirthday;
 
     private String name;
