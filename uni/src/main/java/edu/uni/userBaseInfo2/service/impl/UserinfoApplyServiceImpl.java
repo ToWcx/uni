@@ -41,6 +41,11 @@ public class UserinfoApplyServiceImpl implements UserinfoApplyService {
     }
 
     @Override
+    public UserinfoApply selectByUserIdAndType(long id,int type) {
+        return userinfoApplyMapper.selectByUserIdAndType(id,type);
+    }
+
+    @Override
     public boolean update(UserinfoApply userinfoApply) {
         return userinfoApplyMapper.update(userinfoApply) > 0 ? true : false;
     }

@@ -117,6 +117,13 @@ public class EmployeeController {
             return Result.build(ResultType.Failed, "你沒有登錄");
         }
         long userId = user.getId();
+        // 审核的信息种类 0:联系方式  1:地址 2：照片  3：亲属  4：学历  5：简历
+        // 6：学生信息 7：教职工信息 8：用户个人信息 9：学生excel表  10：职员excel表
+        if(userinfoApplyService.selectByUserIdAndType(userId,7) != null){
+            System.out.println("已有审批记录，请等审批结束后再提交修改");
+            return Result.build(ResultType.Failed,"已有审批记录，请等审批结束后再提交修改");
+        }
+
         if(employeeAU != null) {
             EmployeeModel employeeModel = employeeAU.getEmployeeModel();
             Employee employee = convertBeanFromModel(employeeModel);

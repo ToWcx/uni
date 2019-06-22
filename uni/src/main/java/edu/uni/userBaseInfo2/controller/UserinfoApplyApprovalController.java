@@ -154,7 +154,6 @@ public class UserinfoApplyApprovalController {
                 UserinfoApplyApproval uIApplyApproval = userinfoApplyApprovalService.select(uAAId);
                 long uAId = uIApplyApproval.getUserinfoApplyId();   //用户申请表id
                 UserinfoApply userinfoApply = userinfoApplyService.select(uAId);
-                long user_id = userinfoApply.getByWho();
                 //继续下一步审批(如果存在下一步)
                 int step = uIApplyApproval.getStep();
                 step++;
@@ -175,14 +174,13 @@ public class UserinfoApplyApprovalController {
                     if(approvalMainName.equals("学生申请修改地址") || approvalMainName.equals("职员申请修改地址")){
 
 //                        //根据userId和flag唯一确定一条地址信息，若已存在该flag，还需把旧记录删除
-//                        Address addr = addressService.selectByUserIdAndFlag(user_id,address.getFlag());
+//                        Address addr = addressService.selectByUserIdAndFlag(userId,address.getFlag());
 //                        if(addr != null){   //若已存在地址信息 删除
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(addressService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有地址记录成功");
                             }else {
                                 System.out.println("AddressController.update -> 删除已有地址记录失败");
-                                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
@@ -192,6 +190,7 @@ public class UserinfoApplyApprovalController {
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                         if(userinfoApplyService.update(userinfoApply) == true) {
                             System.out.println("更新用户信息表成功");
                         } else {
@@ -200,7 +199,6 @@ public class UserinfoApplyApprovalController {
                             return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("学生申请修改通讯") || approvalMainName.equals("职员申请修改通讯")){
-                        Ecomm ecomm = ecommService.select(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(ecommService.updateById(oldId) == true){
                                 System.out.println("AddressController.update -> 删除已有通讯记录成功");
@@ -215,15 +213,15 @@ public class UserinfoApplyApprovalController {
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                         if(userinfoApplyService.update(userinfoApply) == true) {
                             System.out.println("更新用户信息表成功");
                         } else {
                             System.out.println("更新用户信息表失败");
                             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                                return Result.build(ResultType.Failed);
+                            return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("辅导员申请修改学生信息")){
-                        Student student = studentService.selectBean(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(studentService.updateById(oldId) == true){
                                 System.out.println("studentController.update -> 删除已有学生记录成功");
@@ -232,18 +230,21 @@ public class UserinfoApplyApprovalController {
                                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                                 return Result.build(ResultType.Failed);
                             }
+                        } else{
+                            studentService.select(userId);
                         }
                         studentService.updateTrueById(newId);
                         System.out.println("更新学生信息成功");
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                         if(userinfoApplyService.update(userinfoApply) == true) {
                             System.out.println("更新用户信息表成功");
                         } else {
                             System.out.println("更新用户信息表失败");
                             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                                return Result.build(ResultType.Failed);
+                            return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("人事处申请修改职员学历")){
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
@@ -260,12 +261,13 @@ public class UserinfoApplyApprovalController {
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                         if(userinfoApplyService.update(userinfoApply) == true) {
                             System.out.println("更新用户信息表成功");
                         } else {
                             System.out.println("更新用户信息表失败");
                             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                                return Result.build(ResultType.Failed);
+                            return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("人事处申请修改职员简历")){
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
@@ -282,15 +284,15 @@ public class UserinfoApplyApprovalController {
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                         if(userinfoApplyService.update(userinfoApply) == true) {
                             System.out.println("更新用户信息表成功");
                         } else {
                             System.out.println("更新用户信息表失败");
                             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                                return Result.build(ResultType.Failed);
+                            return Result.build(ResultType.Failed);
                         }
                     } else if(approvalMainName.equals("人事处申请修改职员信息")){
-                        Employee employee = employeeService.selectById(oldId);
                         if(oldId != 0){   //判断是否存在旧id 存在则删掉再插入
                             if(employeeService.updateById(oldId) == true){
                                 System.out.println("studentController.update -> 删除已有职员记录成功");
@@ -305,6 +307,7 @@ public class UserinfoApplyApprovalController {
                         Date endTime = new Date();
                         userinfoApply.setEndTime(endTime);
                         userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                         if(userinfoApplyService.update(userinfoApply) == true) {
                             System.out.println("更新用户信息表成功");
                         } else {
@@ -329,7 +332,7 @@ public class UserinfoApplyApprovalController {
                     userinfoApplyApproval1.setStep(step);
                     userinfoApplyApproval1.setRoleName(roleName);
                     userinfoApplyApproval1.setInfoType(uIApplyApproval.getInfoType());
-                    userinfoApplyApproval1.setApplyUserId(user_id);
+                    userinfoApplyApproval1.setApplyUserId(userId);
                     userinfoApplyApproval1.setDatetime(date);
                     userinfoApplyApproval1.setByWho(uIApplyApproval.getCheckWho());    //上个审批人
                     userinfoApplyApproval1.setDeleted(false);
@@ -343,7 +346,8 @@ public class UserinfoApplyApprovalController {
                 } else if(result == 2){ //审批不通过
                     Date endTime = new Date();
                     userinfoApply.setEndTime(endTime);
-                    userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setApplyResult(userinfoApplyApproval.getResult());
+                        userinfoApply.setDeleted(true);
                     if(userinfoApplyService.update(userinfoApply) == true) {
                         System.out.println("更新用户信息表成功");
                     } else {

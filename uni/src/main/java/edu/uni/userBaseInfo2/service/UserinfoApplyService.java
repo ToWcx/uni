@@ -33,6 +33,13 @@ public interface UserinfoApplyService {
     List<UserinfoApply> selectByUserId(long id);
 
     /**
+     * 根据bywho和infoType查找用户未审批完的申请表
+     * @param id
+     * @return
+     */
+    UserinfoApply selectByUserIdAndType(long id,int type);
+
+    /**
      * 更新用户申请表
      * @param userinfoApply
      * @return

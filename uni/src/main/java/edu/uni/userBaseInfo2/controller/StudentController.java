@@ -25,6 +25,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -94,7 +95,8 @@ public class StudentController {
                 cache.delete(CacheNameHelper.ListAll_CacheName);
                 return Result.build(ResultType.Success);
             }else{
-                return Result.build(ResultType.Failed);
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                                return Result.build(ResultType.Failed);
             }
         }
         return Result.build(ResultType.ParamError);
@@ -116,6 +118,7 @@ public class StudentController {
 //            cache.delete(CacheNameHelper.ListAll_CacheName);
 //            return Result.build(ResultType.Success);
 //        }else{
+//            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 //            return Result.build(ResultType.Failed);
 //        }
 //    }
@@ -136,7 +139,16 @@ public class StudentController {
             return Result.build(ResultType.Failed, "你沒有登錄");
         }
         long userId = user.getId();
+        // 审核的信息种类 0:联系方式  1:地址 2：照片  3：亲属  4：学历  5：简历
+        // 6：学生信息 7：教职工信息 8：用户个人信息 9：学生excel表  10：职员excel表
+        if(userinfoApplyService.selectByUserIdAndType(userId,6) != null){
+            System.out.println("已有审批记录，请等审批结束后再提交修改");
+            return Result.build(ResultType.Failed,"已有审批记录，请等审批结束后再提交修改");
+        }
+
         if(studentAU != null) {
+            //判断是否已有此类型的申请存在，存在则把修改内容加进去
+
             StudentModel studentModel = studentAU.getStudentModel();
             System.out.println("进入student Update Line124*****************");
             Student student = convertBeanFromModel(studentModel);
@@ -146,6 +158,7 @@ public class StudentController {
             //根据userId查到用户的学校id
             Long uniId = userService.selectUniIdById(userinfoApply.getByWho()).getUniversityId();
 //            student.setUserId(userId);
+            student.setUserId(userId);
             student.setDatetime(date);
             student.setDeleted(true);  //改
             student.setByWho(userinfoApply.getByWho());
@@ -163,6 +176,7 @@ public class StudentController {
                 long AMId = approvalMain.getId();
                 if(approvalMain == null){
                     System.out.println("approvalMain为空 查询不到该审批步数规定表");
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                     return Result.build(ResultType.Failed);
                 }
                 userinfoApply.setApprovalMainId(AMId);
@@ -175,6 +189,7 @@ public class StudentController {
                     System.out.println("userinfoApply插入成功");
                 }else {
                     System.out.println("userinfoApply插入失败");
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                     return Result.build(ResultType.Failed);
                 }
                 int step = 1;
@@ -202,11 +217,13 @@ public class StudentController {
                     System.out.println("插入审批流程表成功");
                     return Result.build(ResultType.Success);
                 } else {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                     return Result.build(ResultType.Failed);
                 }
 
             }else {
                 System.out.println("修改学生信息失败");
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                 return Result.build(ResultType.Failed);
             }
         }
